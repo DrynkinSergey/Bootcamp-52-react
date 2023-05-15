@@ -1,24 +1,23 @@
-import logo from './logo.svg'
-import './App.css'
+import { Header } from './components/Header'
+import { Section } from './components/Section'
 
 function App() {
+	const titleMovies = 'Movies section'
+	const array = [].filter(item => item.id !== 1)
+	if (1) {
+		console.log()
+	}
+
 	return (
-		<div className='App'>
-			<header className='App-header'>
-				<img src={logo} className='App-logo' alt='logo' />
-				<p>
-					Edit <code>src/App.js</code> and save to reload.
-				</p>
-				<a
-					className='App-link'
-					href='https://reactjs.org'
-					target='_blank'
-					rel='noopener noreferrer'
-				>
-					Learn React
-				</a>
-			</header>
-		</div>
+		//Це фрагмент в якості батьківського діва
+		<>
+			<Header />
+			<hr />
+			<main>
+				<Section title={titleMovies} text='Movies conent' />
+				<Section title='Content' text='Another conent' />
+			</main>
+		</>
 	)
 }
 

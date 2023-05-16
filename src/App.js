@@ -1,25 +1,16 @@
-import logo from './logo.svg';
-import './App.css';
-
+import { ColorPicker } from './components/ColorPicker/ColorPicker'
+import { Counter } from './components/Counter/Counter'
+import { TodoList } from './components/TodoList/TodoList'
+import colors from './assets/colors.json'
+import todos from './assets/todos.json'
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+	return (
+		<div>
+			<TodoList todos={todos} />
+			<Counter />
+			<ColorPicker colors={colors} />
+		</div>
+	)
 }
 
-export default App;
+export default App

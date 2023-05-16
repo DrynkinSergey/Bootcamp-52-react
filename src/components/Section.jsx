@@ -1,13 +1,12 @@
 import { MyButton } from './MyButton'
 
-export const Section = ({ title = 'Base section', text, btnName }) => {
-	// const { title, text } = props
-	// console.log(title)
+export const Section = ({ title = 'Base section', children }) => {
+	console.log(children)
 	return (
 		<section>
-			<p>{title}</p>
-			<p>{text}</p>
-			<MyButton btnName={btnName} />
+			<p> {title} </p>
+			<hr />
+			{children}
 		</section>
 	)
 }

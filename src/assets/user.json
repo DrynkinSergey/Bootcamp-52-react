@@ -1,0 +1,39 @@
+[
+	{
+		"id": 1,
+		"username": "Jacques Gluke",
+		"tag": "jgluke",
+		"location": "Ocho Rios, Jamaica",
+		"avatar": "https://cdn-icons-png.flaticon.com/512/1077/1077012.png",
+		"stats": {
+			"followers": 5603,
+			"views": 4827,
+			"likes": 1308
+		}
+	},
+	{
+		"id": 2,
+
+		"username": "John Gluke",
+		"tag": "jgluke",
+		"location": " Jamaica",
+		"avatar": "https://cdn-icons-png.flaticon.com/512/1077/1077012.png",
+		"stats": {
+			"followers": 560,
+			"views": 487,
+			"likes": 11308
+		}
+	},
+	{
+		"id": 3,
+		"username": "Alex",
+		"tag": "alexGood",
+		"location": " Ukraine",
+		"avatar": "https://cdn-icons-png.flaticon.com/512/1077/1077022.png",
+		"stats": {
+			"followers": 52260,
+			"views": 41187,
+			"likes": 11308
+		}
+	}
+]

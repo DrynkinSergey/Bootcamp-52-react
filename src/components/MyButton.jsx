@@ -1,6 +1,6 @@
 import React from 'react'
 
-export const MyButton = ({ title }) => {
+export const MyButton = ({ title = 'button' }) => {
 	return (
 		<button style={{ backgroundColor: 'green', color: 'white' }}>
 			{title}

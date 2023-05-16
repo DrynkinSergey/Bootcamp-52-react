@@ -43,9 +43,12 @@ import App from './App'
 // 		</>
 // 	)
 // }
-
+const user = {
+	name: 'Alex',
+	surname: 'Popov',
+}
 const root = ReactDOM.createRoot(document.querySelector('#root'))
-root.render(<App />)
+root.render(<App user={user} />)
 // <a href='/' title='Hello'>Click me!</a>
 
 // import React from 'react'

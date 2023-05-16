@@ -1,22 +1,23 @@
 import { Header } from './components/Header'
+import { MyButton } from './components/MyButton'
 import { Section } from './components/Section'
+import { UserCard } from './components/UserCard'
 
-function App() {
+function App({ user }) {
 	const titleMovies = 'Movies section'
-	const array = [].filter(item => item.id !== 1)
-	if (1) {
-		console.log()
-	}
 
 	return (
-		//Це фрагмент в якості батьківського діва
 		<>
-			<Header />
+			{/* <Header headerTitle='Hello' /> */}
 			<hr />
-			<main>
-				<Section title={titleMovies} text='Movies conent' />
-				<Section title='Content' text='Another conent' />
-			</main>
+			<MyButton title='login' />
+			<MyButton title='logout' />
+
+			<UserCard user={user} />
+
+			<Section btnName='login' title={titleMovies} text='Movies conent' />
+			<hr />
+			<Section text='Another conent' />
 		</>
 	)
 }

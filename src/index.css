@@ -11,3 +11,13 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+.userList_Wrapper{
+  display: flex;
+  gap:30px;
+  margin: 0 auto;
+  justify-content: center;
+  padding: 20px;
+}
+.title{
+  color: red
+}

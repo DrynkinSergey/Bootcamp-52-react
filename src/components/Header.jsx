@@ -1,6 +1,6 @@
 import { Buttons } from './Buttons'
 import { Logo } from './Logo'
-
+import PropTypes from 'prop-types'
 export const Header = props => {
 	console.log(props)
 	return (
@@ -10,4 +10,7 @@ export const Header = props => {
 			<Buttons />
 		</header>
 	)
+}
+Header.propTypes = {
+	headerTitle: PropTypes.string,
 }

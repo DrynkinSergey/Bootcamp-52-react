@@ -1,6 +1,8 @@
 import userData from './assets/user.json'
 import { User } from './components/User/User'
 import styles from './app.module.css'
+import styled from 'styled-components'
+
 function App() {
 	let isOpen = true
 	const isLoggedIn = true
@@ -9,10 +11,12 @@ function App() {
 	}
 	return (
 		<>
-			<div className='userList_Wrapper'>
-				{userData.map(user => (
+			<Wrapper>
+				{userData.map((user, index) => (
 					<User
 						key={user.id}
+						index={index}
+						isOnline={user.isOnline}
 						avatar={user.avatar}
 						location={user.location}
 						username={user.username}
@@ -20,7 +24,7 @@ function App() {
 						stats={user.stats}
 					/>
 				))}
-			</div>
+			</Wrapper>
 
 			{isOpen ? (
 				<h1 className={styles.title}>Modal is open</h1>
@@ -33,5 +37,10 @@ function App() {
 		</>
 	)
 }
-
+const Wrapper = styled.div`
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	gap: 30px;
+`
 export default App

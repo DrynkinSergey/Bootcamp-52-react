@@ -1,6 +1,7 @@
 [
 	{
 		"id": 1,
+		"isOnline": false,
 		"username": "Jacques Gluke",
 		"tag": "jgluke",
 		"location": "Ocho Rios, Jamaica",
@@ -14,6 +15,7 @@
 	{
 		"id": 2,
 
+		"isOnline": false,
 		"username": "John Gluke",
 		"tag": "jgluke",
 		"location": " Jamaica",
@@ -26,6 +28,7 @@
 	},
 	{
 		"id": 3,
+		"isOnline": true,
 		"username": "Alex",
 		"tag": "alexGood",
 		"location": " Ukraine",

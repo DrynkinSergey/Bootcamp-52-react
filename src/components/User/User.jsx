@@ -1,25 +1,43 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import s from './User.module.css'
-export const User = ({ title, avatar, location, username, tag, stats }) => {
+
+import { UserStyles } from './User.styled'
+
+export const User = ({
+	index,
+	isOnline,
+	title,
+	avatar,
+	location,
+	username,
+	tag,
+	stats,
+}) => {
 	return (
-		<div className={s.card}>
+		<UserStyles.Card cardIndex={index}>
 			{title && <h1>User card: {title}</h1>}
 			<img style={{ height: '200px' }} src={avatar} alt='' />
-			<h1 className={s.title}>Name: {username}</h1>
-			<h2 className='title'>Location: {location}</h2>
-			<h2 className={s.tag}>Tag: {tag}</h2>
+
+			<UserStyles.NameStyled>
+				{' '}
+				<UserStyles.Status status={isOnline}></UserStyles.Status>
+				<span>Name:</span> {username}
+			</UserStyles.NameStyled>
+			<UserStyles.Location>Location: {location}</UserStyles.Location>
+			<h2>Tag: {tag}</h2>
 			<h3>
 				Stats: {stats.followers} | {stats.views} | {stats.likes}
 			</h3>
 			<h2>
 				{stats.followers > 5000 ? 'This person is star' : 'This is common'}
 			</h2>
-		</div>
+		</UserStyles.Card>
 	)
 }
 
 User.propTypes = {
+	index: PropTypes.number,
+	isOnline: PropTypes.bool,
 	title: PropTypes.string,
 	avatar: PropTypes.string.isRequired,
 	location: PropTypes.string.isRequired,

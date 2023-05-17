@@ -12,7 +12,7 @@
 	{
 		"id": 3,
 		"todo": "Watch a classic movie",
-		"completed": false
+		"completed": true
 	},
 	{
 		"id": 4,

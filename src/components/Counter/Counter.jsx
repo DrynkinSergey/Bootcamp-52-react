@@ -24,7 +24,6 @@ export class Counter extends React.Component {
 		this.setState(prevState => ({
 			counter: prevState.counter + this.state.step,
 		}))
-		this.props.handleChangeColor()
 	}
 	decrement = () => {
 		this.setState(prevState => ({

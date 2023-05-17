@@ -24,9 +24,8 @@ export class ColorPicker extends React.Component {
 	render() {
 		// Деструктуризація стейту
 		const { colors, currentColor } = this.state
-		const { mustChange } = this.props
 		return (
-			<StyledBackgroundTheme mustChange={mustChange} bgColor={currentColor}>
+			<StyledBackgroundTheme bgColor={currentColor}>
 				<StyledColorPalette>
 					<StyledColorsList>
 						{colors.map((item, index) => (

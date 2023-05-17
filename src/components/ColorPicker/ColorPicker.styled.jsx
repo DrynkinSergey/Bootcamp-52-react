@@ -4,7 +4,9 @@ export const StyledBackgroundTheme = styled.div`
 	display: grid;
 	place-content: center;
 	height: 100vh;
-	transition: background-color 0.9s linear;
+	transition: background-color 0.5s linear;
+	background-color: ${props => (props.mustChange ? 'red' : 'white')};
+	width: 100vw;
 `
 export const StyledColorPalette = styled.div`
 	text-align: center;

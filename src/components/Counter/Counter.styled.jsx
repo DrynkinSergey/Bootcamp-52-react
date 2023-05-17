@@ -13,6 +13,11 @@ export const StyledButton = styled.button`
 		color: white;
 	}
 `
+export const CounterStyled = styled.h1`
+	span {
+		color: ${({ color }) => color};
+	}
+`
 export const StyledCounter = styled.div`
 	background-color: #454545;
 	min-height: 50vh;

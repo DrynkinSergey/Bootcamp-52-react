@@ -1,11 +1,11 @@
 import React, { Component } from 'react'
-import { StyledButton, StyledCounter } from './Counter.styled'
+import { CounterStyled, StyledButton, StyledCounter } from './Counter.styled'
 import { Flex } from '../../Global.styled'
 
 export class Counter extends React.Component {
 	state = {
 		counter: 0,
-		step: 4,
+		step: 1,
 	}
 
 	// {
@@ -18,19 +18,37 @@ export class Counter extends React.Component {
 	//document.querySelector('.btn').addEventListener('click', ()=> {})
 	//document.querySelector('.btn').removeEventListener('click', ()=> {})
 	increment = () => {
-		this.setState({ counter: this.state.counter + this.state.step })
+		// this.setState({ counter: this.state.counter + this.state.step })
+		// this.setState({ counter: this.state.counter + this.state.step })
+		// this.setState({ counter: this.state.counter + this.state.step })
+		this.setState(prevState => ({
+			counter: prevState.counter + this.state.step,
+		}))
+		this.props.handleChangeColor()
 	}
 	decrement = () => {
-		this.setState({ counter: this.state.counter - 1 })
+		this.setState(prevState => ({
+			counter: prevState.counter - this.state.step,
+		}))
+	}
+	handleChangeInput = ({ target }) => {
+		this.setState({ step: +target.value })
 	}
 	reset = () => {
 		this.setState({ counter: 0 })
+		// console.log(+'12')
+		// console.log(Number('12'))
 	}
 	render() {
 		const { counter } = this.state
 		return (
 			<StyledCounter>
-				<h1>{counter}</h1>
+				<Flex gap='20'>
+					<input onChange={this.handleChangeInput} type='text' />
+				</Flex>
+				<CounterStyled color='red'>
+					<span>{counter}</span>
+				</CounterStyled>
 				<Flex justify='center' gap='30'>
 					<StyledButton onClick={this.decrement}>minus</StyledButton>
 					<StyledButton onClick={this.reset}>reset</StyledButton>

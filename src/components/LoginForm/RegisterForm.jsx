@@ -7,11 +7,11 @@ import {
 } from './LoginForm.styled'
 import { StyledButton } from '../Counter/Counter.styled'
 
-export class LoginForm extends React.Component {
+export class RegisterForm extends React.Component {
 	render() {
 		return (
 			<StyledLoginForm onSubmit={this.handleSubmit}>
-				<StyledTitle>Login</StyledTitle>
+				<StyledTitle>Register</StyledTitle>
 				<StyledLabel>
 					Name:
 					<StyledInput type='text' name='username' />
@@ -41,7 +41,7 @@ export class LoginForm extends React.Component {
 				</StyledLabel>
 
 				<br />
-				<StyledButton type='submit'>Login</StyledButton>
+				<StyledButton type='submit'>Register</StyledButton>
 			</StyledLoginForm>
 		)
 	}

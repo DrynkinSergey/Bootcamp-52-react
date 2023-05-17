@@ -3,7 +3,7 @@ import styled from 'styled-components'
 export const StyledButton = styled.button`
 	padding: 10px 22px;
 	border-radius: 4px;
-	border: none;
+	border: ${props => (props.border ? '1px solid black' : 'none')};
 	font-size: ${props => props.size || '2rem'};
 	background-color: white;
 	transition: all 0.2s ease-in-out;

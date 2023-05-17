@@ -12,9 +12,13 @@ export const Global = createGlobalStyle`
 	body{
 		padding:0;
 		margin: 0;
-		
+		font-size: 1.2rem;
 		*{
 			box-sizing: border-box;
+		}
+		h1,h2,h3,h4{
+			padding: 0;
+			margin: 0;
 		}
 	}
 `

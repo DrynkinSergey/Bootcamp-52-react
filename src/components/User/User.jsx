@@ -5,18 +5,6 @@ import { StyledFirstName, StyledUserItem } from './User.styled'
 import { StyledButton } from '../../App'
 export const User = props => {
 	const { firstName, lastName, age, gender, email, image, phone, id } = props
-	const getClasses = gender => {
-		switch (gender) {
-			case 'male':
-				return css.blue
-			case 'female':
-				return css.pink
-			case 'robot':
-				return css.red
-			default:
-				break
-		}
-	}
 
 	// console.log(`Моє ім'я це : ${name}`)
 

@@ -1,15 +1,10 @@
-import { ColorPicker } from './components/ColorPicker/ColorPicker'
+import { Flex } from './Global.styled'
 import { Counter } from './components/Counter/Counter'
-import { TodoList } from './components/TodoList/TodoList'
-import colors from './assets/colors.json'
-import todos from './assets/todos.json'
 function App() {
 	return (
-		<div>
-			<TodoList todos={todos} />
+		<Flex h='100vh' justify='center' items='center'>
 			<Counter />
-			<ColorPicker colors={colors} />
-		</div>
+		</Flex>
 	)
 }
 

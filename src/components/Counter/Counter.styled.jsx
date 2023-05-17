@@ -15,7 +15,7 @@ export const StyledButton = styled.button`
 `
 export const StyledCounter = styled.div`
 	background-color: #454545;
-	min-height: 40vh;
+	min-height: 50vh;
 	display: flex;
 	flex-direction: column;
 	gap: 40px;

@@ -23,9 +23,10 @@ export const EmployeeCard = ({
 					</Skill>
 				))}
 			</SkillList>
-			<StyledButton border size='.8rem' onClick={() => onDelete(id)}>
+			<StyledButton onClick={() => onDelete(id)} border size='.8rem'>
 				Delete
 			</StyledButton>
+			{isOpenToWork && <h2>IsOpenToWork</h2>}
 		</UserCard>
 	)
 }
@@ -37,7 +38,7 @@ const UserCard = styled.li`
 	border: 3px solid;
 	border-radius: 12px;
 	padding: 15px;
-	background-color: #3bfead;
+	background-color: ${props => (props.open ? '#3bfead' : 'tomato')};
 	width: 100%;
 	box-shadow: 4px 5px 2px 1px gray;
 `

@@ -1,14 +1,8 @@
 import React from 'react'
-import { Flex } from './Global.styled'
-import { RegisterForm } from './components/LoginForm/RegisterForm'
-import { RegisterFormUncontrolled } from './components/LoginForm/RegisterFormUncontrolled'
+import { Employees } from './components/Employees/Employee'
 class App extends React.Component {
 	render() {
-		return (
-			<Flex justify='center'>
-				<RegisterFormUncontrolled />
-			</Flex>
-		)
+		return <Employees />
 	}
 }
 

@@ -2,18 +2,11 @@ import React from 'react'
 import styled from 'styled-components'
 import { EmployeeCard } from './EmployeeCard'
 
-export const EmployeeList = ({
-	users = [
-		{
-			id: 1,
-			name: 'Leanne Graham',
-			email: 'Sincere@april.biz',
-			bio: 'Assumenda harum mollitia neque, officiis veniam repellat sapiente delectus aspernatur',
-			skills: ['react', 'vue'],
-			isOpenToWork: false,
-		},
-	],
-}) => {
+export const EmployeeList = ({ users = [], onDelete }) => {
+	if (!users.length) {
+		return <h1>Немає юзерів для роботи</h1>
+	}
+
 	return (
 		<UserList>
 			{users.map(({ id, name, bio, skills, isOpenToWork, email }) => (
@@ -25,6 +18,7 @@ export const EmployeeList = ({
 					skills={skills}
 					isOpenToWork={isOpenToWork}
 					email={email}
+					onDelete={onDelete}
 				/>
 			))}
 		</UserList>

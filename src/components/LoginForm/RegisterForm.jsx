@@ -8,7 +8,7 @@ import {
 import { StyledButton } from '../Counter/Counter.styled'
 
 const INITIAL_STATE = {
-	name: '',
+	userName: '',
 	email: '',
 	password: '',
 }
@@ -19,6 +19,8 @@ export class RegisterForm extends React.Component {
 	handleChangeInput = e => {
 		const { name, value } = e.target
 		this.setState({ [name]: value })
+		// {a:1,b:2,c:3}
+		// setState({[name]: ....})
 	}
 	onSubmit = e => {
 		e.preventDefault()
@@ -38,7 +40,7 @@ export class RegisterForm extends React.Component {
 	// 	this.setState({ email: e.target.value })
 	// }
 	render() {
-		const { name, email, password } = this.state
+		const { userName, email, password } = this.state
 		return (
 			<StyledLoginForm onSubmit={this.onSubmit}>
 				<StyledTitle>Register</StyledTitle>
@@ -46,8 +48,8 @@ export class RegisterForm extends React.Component {
 					Name:
 					<StyledInput
 						type='text'
-						name='name'
-						value={name}
+						name='userName'
+						value={userName}
 						onChange={this.handleChangeInput}
 					/>
 				</StyledLabel>

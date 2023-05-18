@@ -1,27 +1,66 @@
 import React from 'react'
 import styled from 'styled-components'
 import { StyledInput } from '../LoginForm/LoginForm.styled'
+
 const skilsList = ['all', 'react', 'angular', 'vue']
 
-export const EmployeesFilter = () => {
+export const EmployeesFilter = ({
+	onFilter,
+	onChangeCheckbox,
+	onChangeSkill,
+	currentSkill,
+	isAvailable,
+}) => {
 	return (
 		<Filters>
 			<h1>Filters</h1>
 			<Flex column>
-				<StyledInput type='text' />
+				<StyledInput type='text' onChange={e => onFilter(e.target.value)} />
 				<label htmlFor=''>
-					<input type='checkbox' />
+					<input
+						type='checkbox'
+						checked={isAvailable}
+						onChange={onChangeCheckbox}
+					/>
 					<span> isAvailable</span>
 				</label>
 			</Flex>
 			<Flex>
-				{skilsList.map(skill => (
-					<label key={skill}>
-						<input name='skill' type='radio' value={skill} />
-						<span> {skill}</span>
+				{skilsList.map(radioButtonName => (
+					<label key={radioButtonName}>
+						<input
+							name='radioButtonName'
+							type='radio'
+							value={radioButtonName}
+							checked={radioButtonName === currentSkill}
+							onChange={() => onChangeSkill(radioButtonName)}
+						/>
+						<span> {radioButtonName}</span>
 					</label>
 				))}
 			</Flex>
+			{/* <Flex>
+				<label>
+					<input
+						name='radioBtn'
+						type='radio'
+						value='all'
+						checked={'all' === currentSkill}
+						onChange={() => onChangeSkill('all')}
+					/>
+					<span> all</span>
+				</label>
+				<label>
+					<input
+						name='radioBtn'
+						type='radio'
+						value='all'
+						checked={'all' === currentSkill}
+						onChange={() => onChangeSkill('all')}
+					/>
+					<span> all</span>
+				</label>
+			</Flex> */}
 		</Filters>
 	)
 }
@@ -29,10 +68,9 @@ const Filters = styled.div`
 	display: flex;
 	justify-content: space-around;
 	align-items: center;
-	background-color: #3a56f6;
+	background-color: #cbd3ff;
 	font-weight: bold;
 	font-size: 1.5rem;
-	color: white;
 	margin-bottom: 20px;
 `
 const Flex = styled.div`

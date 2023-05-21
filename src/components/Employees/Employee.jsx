@@ -10,6 +10,7 @@ export class Employees extends React.Component {
 		isAvailable: false,
 		currentSkill: 'all',
 	}
+
 	handleDeleteUser = id => {
 		this.setState(prevState => ({
 			users: prevState.users.filter(user => user.id !== id),
@@ -21,7 +22,9 @@ export class Employees extends React.Component {
 	handleChangeAvailable = () => {
 		this.setState(prevState => ({ isAvailable: !prevState.isAvailable }))
 	}
-
+	toggle = () => {
+		this.setState(prev => ({ isOpen: !prev.isOpen }))
+	}
 	handleChangeSkill = skill => {
 		this.setState({ currentSkill: skill })
 	}
@@ -51,6 +54,7 @@ export class Employees extends React.Component {
 					onChangeCheckbox={this.handleChangeAvailable}
 					onFilter={this.handleSetFilter}
 				/>
+
 				<EmployeeList users={filteredData} onDelete={this.handleDeleteUser} />
 			</div>
 		)

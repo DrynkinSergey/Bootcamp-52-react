@@ -11,6 +11,34 @@ export class Employees extends React.Component {
 		currentSkill: 'all',
 	}
 
+	componentDidMount() {
+		console.log('Компонент створився і існує')
+		const users = JSON.parse(window.localStorage.getItem('users'))
+		console.log(users)
+		users.length
+			? this.setState({ users })
+			: this.setState({
+					users: [
+						{
+							id: 1,
+							name: 'Leanne Graham',
+							email: 'Sincere@april.biz',
+							bio: 'Assumenda harum mollitia neque, officiis veniam repellat sapiente delectus aspernatur',
+							skills: ['react', 'vue'],
+							isOpenToWork: false,
+						},
+					],
+			  })
+	}
+	componentDidUpdate(prevProps, prevState) {
+		// console.log(`До `, prevState)
+		// console.log('Після', this.state)
+		if (prevState.users.length !== this.state.users.length) {
+			console.log('Users was changed')
+			window.localStorage.setItem('users', JSON.stringify(this.state.users))
+		}
+	}
+
 	handleDeleteUser = id => {
 		this.setState(prevState => ({
 			users: prevState.users.filter(user => user.id !== id),
@@ -22,9 +50,7 @@ export class Employees extends React.Component {
 	handleChangeAvailable = () => {
 		this.setState(prevState => ({ isAvailable: !prevState.isAvailable }))
 	}
-	toggle = () => {
-		this.setState(prev => ({ isOpen: !prev.isOpen }))
-	}
+
 	handleChangeSkill = skill => {
 		this.setState({ currentSkill: skill })
 	}

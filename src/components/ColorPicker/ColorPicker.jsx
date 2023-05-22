@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { Component, PureComponent } from 'react'
 import {
 	StyledBackgroundTheme,
 	StyledColorPalette,
@@ -6,7 +6,7 @@ import {
 	StyledColorsList,
 } from './ColorPicker.styled'
 
-export class ColorPicker extends React.Component {
+export class ColorPicker extends Component {
 	//Встановлення пропсіп за замовчуванням
 	static defaultProps = {
 		colors: [],
@@ -16,11 +16,13 @@ export class ColorPicker extends React.Component {
 		colors: this.props.colors,
 		currentColor: 'white',
 	}
-
-	handleItemClick = color => {
-		this.setState({ currentColor: color })
+	componentDidUpdate() {
+		console.log('Component change color and update')
 	}
-
+	shouldComponentUpdate(_, nextState) {
+		return nextState.currentColor !== this.state.currentColor
+	}
+	// sum (a,b)
 	render() {
 		// Деструктуризація стейту
 		const { colors, currentColor } = this.state
@@ -30,7 +32,7 @@ export class ColorPicker extends React.Component {
 					<StyledColorsList>
 						{colors.map((item, index) => (
 							<StyledColor
-								onClick={() => this.handleItemClick(item.color)}
+								onClick={() => this.setState({ currentColor: item.color })}
 								key={item.id}
 							>
 								{item.color}

@@ -1,6 +1,8 @@
 import React from 'react'
 import Modal from './components/Modal/Modal'
+import colors from './assets/colors.json'
 import { StyledButton } from './components/Counter/Counter.styled'
+import { ColorPicker } from './components/ColorPicker/ColorPicker'
 class App extends React.Component {
 	state = {
 		isOpen: false,
@@ -19,9 +21,10 @@ class App extends React.Component {
 					minHeight: '100vh',
 				}}
 			>
-				<StyledButton border='2px' onClick={this.toggleModal}>
+				<ColorPicker colors={colors} />
+				{/* <StyledButton border='2px' onClick={this.toggleModal}>
 					Open modal
-				</StyledButton>
+				</StyledButton> */}
 				{this.state.isOpen && (
 					<Modal onClose={this.toggleModal} title='First modal'>
 						<h2>Hello from modal</h2>

@@ -31,7 +31,7 @@ class Modal extends Component {
 		// this.timeoutID = setTimeout(() => {
 		// 	console.log('setTimout is done!')
 		// }, 3000)
-		// this.intervalID = setInterval(this.getTime, 1000)
+		this.intervalID = setInterval(this.getTime, 1000)
 	}
 	componentWillUnmount() {
 		console.log('modal was unmount')

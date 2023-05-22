@@ -16,6 +16,14 @@ export const Global = createGlobalStyle`
 		*{
 			box-sizing: border-box;
 		}
+		ul{
+			padding: 0;
+			margin: 0;
+				li{
+					list-style: none;
+			
+				}
+		}
 		h1,h2,h3,h4{
 			padding: 0;
 			margin: 0;

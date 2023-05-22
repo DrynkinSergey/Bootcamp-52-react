@@ -8,6 +8,14 @@ class Modal extends Component {
 	intervalID = null
 	timeoutID = null
 
+	onBackdropClick = e => {
+		// console.log(e.target === e.currentTarget)
+
+		if (e.target === e.currentTarget) {
+			this.props.onClose()
+		}
+	}
+
 	handleKeyDown = e => {
 		console.log(e)
 		if (e.key === 'Escape') {
@@ -33,7 +41,7 @@ class Modal extends Component {
 	render() {
 		const { onClose, children, title } = this.props
 		return (
-			<ModalWrapper>
+			<ModalWrapper onClick={this.onBackdropClick}>
 				<ModalContent>
 					{title && (
 						<>

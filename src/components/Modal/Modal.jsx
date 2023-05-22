@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
+import ReactDOM from 'react-dom'
 import { CloseButton, ModalContent, ModalWrapper } from './Modal.stylede'
 
+const modalDiv = document.querySelector('#modal')
 class Modal extends Component {
 	getTime = () => {
 		console.log(new Date().toLocaleTimeString())
@@ -40,7 +42,7 @@ class Modal extends Component {
 
 	render() {
 		const { onClose, children, title } = this.props
-		return (
+		return ReactDOM.createPortal(
 			<ModalWrapper onClick={this.onBackdropClick}>
 				<ModalContent>
 					{title && (
@@ -52,7 +54,8 @@ class Modal extends Component {
 					<CloseButton onClick={onClose}>×</CloseButton>
 					{children}
 				</ModalContent>
-			</ModalWrapper>
+			</ModalWrapper>,
+			modalDiv
 		)
 	}
 }

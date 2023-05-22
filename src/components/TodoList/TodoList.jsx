@@ -4,9 +4,30 @@ import { StyledInput, StyledTodo, StyledTodoList } from './TodoList.styled'
 import { Flex } from '../../Global.styled'
 export class TodoList extends React.Component {
 	state = {
-		todos: this.props.todos,
+		todos: [],
 		todoTitle: '',
 	}
+	componentDidMount() {
+		console.log('mount')
+		const todosFromLS = JSON.parse(window.localStorage.getItem('values'))
+		// todosFromLS?.length && this.setState({ todos: todosFromLS })
+		if (todosFromLS) {
+			this.setState({ todos: todosFromLS })
+		}
+	}
+	componentDidUpdate(_, prevState) {
+		if (prevState.todos.length !== this.state.todos.length) {
+			window.localStorage.setItem('values', JSON.stringify(this.state.todos))
+			console.log('Змінився розмір массиву')
+		}
+		if (prevState.todoTitle !== this.state.todoTitle) {
+			console.log('Змінився розмір строки пошуку')
+		}
+		if (this.state.todos.length === 4) {
+			console.log('Вітаю ви дойшли до 4 туду')
+		}
+	}
+
 	handleDelete = id => {
 		const newArray = this.state.todos.filter(item => item.id !== id)
 		this.setState({ todos: newArray })
@@ -22,7 +43,6 @@ export class TodoList extends React.Component {
 				},
 			],
 		}))
-		alert('hello')
 	}
 	handleRemoveAllTodos = () => {
 		this.setState({ todos: [] })

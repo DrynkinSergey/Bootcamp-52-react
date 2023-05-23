@@ -2,29 +2,36 @@ import React from 'react'
 import { StyledButton } from '../Counter/Counter.styled'
 import { StyledInput, StyledTodo, StyledTodoList } from './TodoList.styled'
 import { Flex } from '../../Global.styled'
+import axios from 'axios'
 export class TodoList extends React.Component {
 	state = {
 		todos: [],
 		todoTitle: '',
+		skip: 0,
 	}
 	componentDidMount() {
-		console.log('mount')
-		const todosFromLS = JSON.parse(window.localStorage.getItem('values'))
-		// todosFromLS?.length && this.setState({ todos: todosFromLS })
-		if (todosFromLS) {
-			this.setState({ todos: todosFromLS })
-		}
+		axios
+			.get(`https://dummyjson.com/todos?limit=10&skip=${this.state.skip}`)
+			.then(({ data }) => this.setState({ todos: data.todos }))
+			.catch(e => console.log(e.message))
+		// const todosFromLS = JSON.parse(window.localStorage.getItem('values'))
+		// if (todosFromLS) {
+		// 	this.setState({ todos: todosFromLS })
+		// }
 	}
 	componentDidUpdate(_, prevState) {
-		if (prevState.todos.length !== this.state.todos.length) {
-			window.localStorage.setItem('values', JSON.stringify(this.state.todos))
-			console.log('Змінився розмір массиву')
-		}
-		if (prevState.todoTitle !== this.state.todoTitle) {
-			console.log('Змінився розмір строки пошуку')
-		}
-		if (this.state.todos.length === 4) {
-			console.log('Вітаю ви дойшли до 4 туду')
+		// if (prevState.todos.length !== this.state.todos.length) {
+		// 	window.localStorage.setItem('values', JSON.stringify(this.state.todos))
+		// 	console.log('Змінився розмір массиву')
+		// }
+		if (prevState.skip !== this.state.skip) {
+			axios
+				.get(`https://dummyjson.com/todos?limit=10&skip=${this.state.skip}`)
+				.then(({ data }) =>
+					this.setState(prevState => ({
+						todos: [...prevState.todos, ...data.todos],
+					}))
+				)
 		}
 	}
 
@@ -44,8 +51,8 @@ export class TodoList extends React.Component {
 			],
 		}))
 	}
-	handleRemoveAllTodos = () => {
-		this.setState({ todos: [] })
+	loadMore = () => {
+		this.setState(prevState => ({ skip: prevState.skip + 10 }))
 	}
 	handleChangeInput = event => {
 		this.setState({ todoTitle: event.target.value })
@@ -62,19 +69,27 @@ export class TodoList extends React.Component {
 					{todos.map(({ todo, id, completed }) => (
 						<StyledTodo key={id}>
 							<input type='checkbox' />
-							<span>{todo}</span>
+							<span>
+								{id}.{todo}
+							</span>
 							<StyledButton size='18px' onClick={() => this.handleDelete(id)}>
 								Delete
 							</StyledButton>
 						</StyledTodo>
 					))}
-					<button onClick={this.handleRemoveAllTodos}>Clear</button>
+					<StyledButton size='18px' onClick={() => this.loadMore()}>
+						Load More
+					</StyledButton>
 				</StyledTodoList>
 			</div>
 		)
 	}
 }
-
+// CRUD
+// C - create
+// R - read
+// U - update
+// D - delete
 // export const TodoList = ({ todos }) => {
 // 	return (
 // 		<div>

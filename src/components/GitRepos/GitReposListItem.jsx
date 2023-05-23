@@ -2,6 +2,7 @@ import React from 'react'
 import { StyledCard, StyledRepoImg } from './GitRepos.styled'
 
 export const GitReposListItem = ({
+	getCurrentPicture,
 	name,
 	desc,
 	language,
@@ -12,7 +13,7 @@ export const GitReposListItem = ({
 }) => {
 	return (
 		<StyledCard>
-			<StyledRepoImg>
+			<StyledRepoImg onClick={() => getCurrentPicture(url)}>
 				<img src={url} alt='userImg' />
 			</StyledRepoImg>
 			<div>

@@ -4,6 +4,8 @@ export const StyledHeader = styled.header`
 	padding: 40px 20px;
 	background-color: deepskyblue;
 	font-size: 2rem;
+	box-shadow: 2px 2px 4px 0 black;
+
 	margin-bottom: 20px;
 	form {
 		display: flex;
@@ -40,6 +42,7 @@ export const StyledCard = styled.li`
 	border-radius: 12px;
 	border: 2px solid black;
 	padding: 20px 10px;
+	box-shadow: 2px 2px 4px 0 black;
 `
 export const StyledRepoImg = styled.div`
 	width: 250px;

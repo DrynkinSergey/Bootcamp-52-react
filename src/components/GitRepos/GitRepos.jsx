@@ -20,11 +20,9 @@ export class GitRepos extends Component {
 		repos: [],
 		query: 'React',
 		page: 1,
-		// isLoading: false,
 		status: 'idle',
 		pictureUrl: '',
 		isOpen: false,
-		// 'idle' 'pending' 'fulfilled' 'rejected'
 	}
 	componentDidMount() {
 		this.fetchData()

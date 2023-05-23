@@ -14,16 +14,8 @@ export class TodoList extends React.Component {
 			.get(`https://dummyjson.com/todos?limit=10&skip=${this.state.skip}`)
 			.then(({ data }) => this.setState({ todos: data.todos }))
 			.catch(e => console.log(e.message))
-		// const todosFromLS = JSON.parse(window.localStorage.getItem('values'))
-		// if (todosFromLS) {
-		// 	this.setState({ todos: todosFromLS })
-		// }
 	}
 	componentDidUpdate(_, prevState) {
-		// if (prevState.todos.length !== this.state.todos.length) {
-		// 	window.localStorage.setItem('values', JSON.stringify(this.state.todos))
-		// 	console.log('Змінився розмір массиву')
-		// }
 		if (prevState.skip !== this.state.skip) {
 			axios
 				.get(`https://dummyjson.com/todos?limit=10&skip=${this.state.skip}`)
@@ -85,28 +77,3 @@ export class TodoList extends React.Component {
 		)
 	}
 }
-// CRUD
-// C - create
-// R - read
-// U - update
-// D - delete
-// export const TodoList = ({ todos }) => {
-// 	return (
-// 		<div>
-// 			<StyledTodoList>
-// 				<Flex gap='30'>
-// 					<StyledInput type='text' />
-// 					<StyledButton>Add</StyledButton>
-// 				</Flex>
-// 				{todos.map(({ todo, id, completed }) => (
-// 					<StyledTodo key={id}>
-// 						<input type='checkbox' />
-// 						<span>{todo}</span>
-// 						<StyledButton size='18px'>Delete</StyledButton>
-// 					</StyledTodo>
-// 				))}
-// 				<button>Clear</button>
-// 			</StyledTodoList>
-// 		</div>
-// 	)
-// }

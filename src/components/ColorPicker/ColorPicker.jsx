@@ -1,4 +1,4 @@
-import React, { Component, PureComponent } from 'react'
+import React, { Component } from 'react'
 import {
 	StyledBackgroundTheme,
 	StyledColorPalette,
@@ -7,11 +7,9 @@ import {
 } from './ColorPicker.styled'
 
 export class ColorPicker extends Component {
-	//Встановлення пропсіп за замовчуванням
 	static defaultProps = {
 		colors: [],
 	}
-	// Обьявлення стейту
 	state = {
 		colors: this.props.colors,
 		currentColor: 'white',
@@ -22,9 +20,7 @@ export class ColorPicker extends Component {
 	shouldComponentUpdate(_, nextState) {
 		return nextState.currentColor !== this.state.currentColor
 	}
-	// sum (a,b)
 	render() {
-		// Деструктуризація стейту
 		const { colors, currentColor } = this.state
 		return (
 			<StyledBackgroundTheme bgColor={currentColor}>
@@ -44,17 +40,3 @@ export class ColorPicker extends Component {
 		)
 	}
 }
-
-// export const ColorPicker = ({ colors }) => {
-// return (
-// 	<StyledBackgroundTheme>
-// 		<StyledColorPalette>
-// 			<StyledColorsList>
-// 				{colors.map((item, index) => (
-// 					<StyledColor key={item.id}>{item.color}</StyledColor>
-// 				))}
-// 			</StyledColorsList>
-// 		</StyledColorPalette>
-// 	</StyledBackgroundTheme>
-// )
-// }

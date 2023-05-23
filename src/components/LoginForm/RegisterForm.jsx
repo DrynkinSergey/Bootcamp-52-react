@@ -15,12 +15,9 @@ const INITIAL_STATE = {
 
 export class RegisterForm extends React.Component {
 	state = INITIAL_STATE
-
 	handleChangeInput = e => {
 		const { name, value } = e.target
 		this.setState({ [name]: value })
-		// {a:1,b:2,c:3}
-		// setState({[name]: ....})
 	}
 	onSubmit = e => {
 		e.preventDefault()
@@ -30,15 +27,6 @@ export class RegisterForm extends React.Component {
 		this.setState(INITIAL_STATE)
 	}
 
-	// handleNameChange = e => {
-	// 	this.setState({ name: e.target.value })
-	// }
-	// handlePasswordChange = e => {
-	// 	this.setState({ password: e.target.value })
-	// }
-	// handleEmailChange = e => {
-	// 	this.setState({ email: e.target.value })
-	// }
 	render() {
 		const { userName, email, password } = this.state
 		return (
@@ -75,17 +63,6 @@ export class RegisterForm extends React.Component {
 					/>
 				</StyledLabel>
 
-				{/* <br />
-				<StyledLabel>
-					age:
-					<StyledInput type='text' name='age' />
-				</StyledLabel>
-
-				<br />
-				<StyledLabel>
-					gender:
-					<StyledInput type='text' name='gender' />
-				</StyledLabel> */}
 
 				<br />
 				<StyledButton type='submit'>Register</StyledButton>

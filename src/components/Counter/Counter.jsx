@@ -8,19 +8,7 @@ export class Counter extends React.Component {
 		step: 1,
 	}
 
-	// {
-	// 	syntheticEvent
-	// 	btnPlus : () => {},
-	// 	input : () => {},
-	// 	checkbox: () => {},
-	// }
-
-	//document.querySelector('.btn').addEventListener('click', ()=> {})
-	//document.querySelector('.btn').removeEventListener('click', ()=> {})
 	increment = () => {
-		// this.setState({ counter: this.state.counter + this.state.step })
-		// this.setState({ counter: this.state.counter + this.state.step })
-		// this.setState({ counter: this.state.counter + this.state.step })
 		this.setState(prevState => ({
 			counter: prevState.counter + this.state.step,
 		}))
@@ -35,8 +23,6 @@ export class Counter extends React.Component {
 	}
 	reset = () => {
 		this.setState({ counter: 0 })
-		// console.log(+'12')
-		// console.log(Number('12'))
 	}
 	render() {
 		const { counter } = this.state
@@ -57,16 +43,3 @@ export class Counter extends React.Component {
 		)
 	}
 }
-
-// export const Counter = () => {
-// 	return (
-// 		<StyledCounter>
-// 			<h1>{0}</h1>
-// 			<Flex justify='center' gap='30'>
-// 				<StyledButton>minus</StyledButton>
-// 				<StyledButton>reset</StyledButton>
-// 				<StyledButton>plus</StyledButton>
-// 			</Flex>
-// 		</StyledCounter>
-// 	)
-// }

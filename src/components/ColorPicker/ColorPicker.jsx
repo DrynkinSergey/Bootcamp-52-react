@@ -1,4 +1,4 @@
-import React, { Component, useState } from 'react'
+import React, { Component, useEffect, useRef, useState } from 'react'
 import {
 	StyledBackgroundTheme,
 	StyledColorPalette,
@@ -9,6 +9,26 @@ import {
 export const ColorPicker = ({ colorsData }) => {
 	const [colors] = useState(colorsData)
 	const [currentColor, setCurrentColor] = useState('white')
+	const isFirstRender = useRef(true)
+	// let firstRender = true
+	useEffect(() => {
+		debugger
+		if (isFirstRender.current) {
+			isFirstRender.current = false
+			console.log('First render')
+			return
+		}
+		console.log('Not first render')
+	})
+	// useEffect(() => {
+	// 	debugger
+	// 	if (firstRender) {
+	// 		firstRender = false
+	// 		console.log('First render')
+	// 		return
+	// 	}
+	// 	console.log('Not first render')
+	// })
 	return (
 		<StyledBackgroundTheme bgColor={currentColor}>
 			<StyledColorPalette>

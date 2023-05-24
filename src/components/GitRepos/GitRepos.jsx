@@ -1,4 +1,4 @@
-import React, { Component, useEffect, useState } from 'react'
+import React, { Component, useEffect, useRef, useState } from 'react'
 import { GitHeader } from './GitHeader'
 import { GitReposList } from './GitReposList'
 import { StyledButton } from '../Counter/Counter.styled'
@@ -15,6 +15,7 @@ const STATUS = {
 }
 
 export const GitRepos = () => {
+	const myRef = useRef(null)
 	const [repos, setRepos] = useState([])
 	const [query, setQuery] = useState('React')
 	const [page, setPage] = useState(1)
@@ -22,6 +23,7 @@ export const GitRepos = () => {
 
 	useEffect(() => {
 		fetchData()
+		console.log(myRef)
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [page, query])
 
@@ -61,7 +63,7 @@ export const GitRepos = () => {
 		<div>
 			<GitHeader onChangeQuery={handleChangeQuery} />
 			<StyledBtns>
-				<StyledButton border='2px' onClick={prevPage}>
+				<StyledButton ref={myRef} border='2px' onClick={prevPage}>
 					Prev Page
 				</StyledButton>
 				<StyledButton border='2px' onClick={nextPage}>

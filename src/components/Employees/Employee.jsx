@@ -2,7 +2,6 @@ import React from 'react'
 import { EmployeesFilter } from './EmployeesFilter'
 import { EmployeeList } from './EmployeeList'
 import userData from './../../assets/employee.json'
-import Modal from '../Modal/Modal'
 
 export class Employees extends React.Component {
 	state = {

@@ -1,5 +1,6 @@
 import React from 'react'
 import { StyledCard, StyledRepoImg } from './GitRepos.styled'
+import Modal from '../Modal/Modal'
 
 export const GitReposListItem = ({
 	getCurrentPicture,

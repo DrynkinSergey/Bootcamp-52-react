@@ -13,10 +13,10 @@ class App extends React.Component {
 			<>
 				{/* <Counter /> */}
 				{/* <ColorPicker colorsData={colors} /> */}
-				<TodoList />
+				{/* <TodoList /> */}
 				{/* <Modal /> */}
-				{/* <GitRepos /> */}
-				<ToastContainer />
+				<GitRepos />
+				<ToastContainer autoClose={1000} />
 			</>
 		)
 	}

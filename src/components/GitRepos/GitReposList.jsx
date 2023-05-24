@@ -7,7 +7,6 @@ export const GitReposList = ({ repos = [], getCurrentPicture }) => {
 		<StyledRepoList>
 			{repos.map(repo => (
 				<GitReposListItem
-					getCurrentPicture={getCurrentPicture}
 					key={repo.id}
 					url={repo.owner.avatar_url}
 					author={repo.owner.login}
@@ -18,6 +17,11 @@ export const GitReposList = ({ repos = [], getCurrentPicture }) => {
 					link={repo.html_url}
 				/>
 			))}
+			{/* {isOpen && (
+				<Modal onClose={toggleModal}>
+					<img src={repo.url} alt='' />
+				</Modal>
+			)} */}
 		</StyledRepoList>
 	)
 }

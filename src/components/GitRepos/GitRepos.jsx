@@ -7,7 +7,6 @@ import { toast } from 'react-toastify'
 import { getRepos } from '../../services/gitAPI'
 import { LoaderSpinner } from './LoaderSpinner'
 import { Error } from './Error'
-import Modal from '../Modal/Modal'
 const STATUS = {
 	idle: 'loading',
 	pending: 'pending',
@@ -20,8 +19,6 @@ export const GitRepos = () => {
 	const [query, setQuery] = useState('React')
 	const [page, setPage] = useState(1)
 	const [status, setStatus] = useState('idle')
-	const [pictureUrl, setPictureUrl] = useState('')
-	const [isOpen, setIsOpen] = useState(false)
 
 	useEffect(() => {
 		fetchData()
@@ -60,17 +57,6 @@ export const GitRepos = () => {
 		setQuery(query)
 	}
 
-	const getCurrentPicture = pictureUrl => {
-		// this.setState({ pictureUrl })
-		setPictureUrl(pictureUrl)
-		toggleModal()
-	}
-
-	const toggleModal = () => {
-		// this.setState(prevState => ({ isOpen: !prevState.isOpen }))
-		setIsOpen(!isOpen)
-	}
-
 	return (
 		<div>
 			<GitHeader onChangeQuery={handleChangeQuery} />
@@ -83,16 +69,8 @@ export const GitRepos = () => {
 				</StyledButton>
 			</StyledBtns>
 			{status === STATUS.pending && <LoaderSpinner />}
-			{status === STATUS.fulfilled && (
-				<GitReposList getCurrentPicture={getCurrentPicture} repos={repos} />
-			)}
+			{status === STATUS.fulfilled && <GitReposList repos={repos} />}
 			{status === STATUS.rejected && <Error />}
-
-			{isOpen && (
-				<Modal onClose={toggleModal}>
-					<img src={pictureUrl} alt='' />
-				</Modal>
-			)}
 		</div>
 	)
 }

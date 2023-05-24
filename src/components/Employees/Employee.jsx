@@ -17,8 +17,7 @@ export class Employees extends React.Component {
 		users.length && this.setState({ users })
 	}
 	componentDidUpdate(prevProps, prevState) {
-		// console.log(`До `, prevState)
-		// console.log('Після', this.state)
+
 		if (prevState.users.length !== this.state.users.length) {
 			console.log('Users was changed')
 			window.localStorage.setItem('users', JSON.stringify(this.state.users))

@@ -2,7 +2,7 @@ import React from 'react'
 import { GitReposListItem } from './GitReposListItem'
 import { StyledRepoList } from './GitRepos.styled'
 
-export const GitReposList = ({ repos = [], getCurrentPicture }) => {
+export const GitReposList = ({ repos = [] }) => {
 	return (
 		<StyledRepoList>
 			{repos.map(repo => (
@@ -17,11 +17,6 @@ export const GitReposList = ({ repos = [], getCurrentPicture }) => {
 					link={repo.html_url}
 				/>
 			))}
-			{/* {isOpen && (
-				<Modal onClose={toggleModal}>
-					<img src={repo.url} alt='' />
-				</Modal>
-			)} */}
 		</StyledRepoList>
 	)
 }

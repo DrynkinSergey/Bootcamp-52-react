@@ -9,7 +9,6 @@ export const GitHeader = ({ onChangeQuery }) => {
 	}, [])
 	const onSubmit = e => {
 		e.preventDefault()
-		// const input = document.querySelector('#input')
 		console.log(inputRef)
 		onChangeQuery(search)
 	}

@@ -14,7 +14,6 @@ class App extends React.Component {
 				<Counter />
 				{/* <ColorPicker colorsData={colors} /> */}
 				{/* <TodoList /> */}
-				{/* <Modal /> */}
 				{/* <GitRepos /> */}
 				<ToastContainer autoClose={1000} />
 			</>

@@ -11,9 +11,9 @@ class App extends React.Component {
 	render() {
 		return (
 			<>
-				<Counter />
-				{/* <ColorPicker colors={colors} /> */}
-				{/* <TodoList /> */}
+				{/* <Counter /> */}
+				{/* <ColorPicker colorsData={colors} /> */}
+				<TodoList />
 				{/* <Modal /> */}
 				{/* <GitRepos /> */}
 				<ToastContainer />

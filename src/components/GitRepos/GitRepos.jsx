@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useEffect, useReducer, useRef, useState } from 'react'
 import { GitHeader } from './GitHeader'
 import { GitReposList } from './GitReposList'
 import { StyledButton } from '../Counter/Counter.styled'
@@ -7,6 +7,12 @@ import { toast } from 'react-toastify'
 import { getRepos } from '../../services/gitAPI'
 import { LoaderSpinner } from './LoaderSpinner'
 import { Error } from './Error'
+import {
+	GET_REPOS,
+	SET_PAGE,
+	SET_QUERY,
+	SET_STATUS,
+} from '../../services/constants'
 const STATUS = {
 	idle: 'loading',
 	pending: 'pending',
@@ -16,51 +22,103 @@ const STATUS = {
 
 export const GitRepos = () => {
 	const myRef = useRef(null)
-	const [repos, setRepos] = useState([])
-	const [query, setQuery] = useState('React')
-	const [page, setPage] = useState(1)
-	const [status, setStatus] = useState('idle')
+	// const [repos, setRepos] = useState([])
+	// const [query, setQuery] = useState('React')
+	// const [page, setPage] = useState(1)
+	// const [status, setStatus] = useState('idle')
+
+	const initialState = {
+		repos: [],
+		query: 'React',
+		page: 1,
+		status: 'idle',
+		error: null,
+	}
+
+	const reposReducer = (state, action) => {
+		console.log(action)
+		switch (action.type) {
+			case GET_REPOS:
+				return {
+					...state,
+					repos: action.payload,
+				}
+			case SET_STATUS:
+				return {
+					...state,
+					status: action.payload,
+				}
+				break
+			case SET_QUERY:
+				return {
+					...state,
+					query: action.payload,
+				}
+			case SET_PAGE:
+				return {
+					...state,
+					page: state.page + action.payload,
+				}
+			default:
+				return state
+		}
+	}
+
+	const [state, dispatch] = useReducer(reposReducer, initialState)
+	const { page, query, repos, status } = state
 
 	useEffect(() => {
 		fetchData()
 		console.log(myRef)
 		// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, [page, query])
+	}, [state.page, state.query])
 
 	const fetchData = () => {
 		const { pending, fulfilled, rejected } = STATUS
-		setStatus(pending)
+		// setStatus(pending)
+		dispatch({ type: SET_STATUS, payload: pending })
+
 		getRepos(query, page)
 			.then(res => {
-				setRepos(res.data.items)
-				setStatus(fulfilled)
+				// setRepos(res.data.items)
+				dispatch({ type: GET_REPOS, payload: res.data.items })
+				dispatch({ type: SET_STATUS, payload: fulfilled })
+				// setStatus(fulfilled)
 				toast.success('Repos is ready!')
 			})
 			.catch(e => {
 				toast.error('Smth went wrong!')
-				setStatus(rejected)
+				// setStatus(rejected)
+				dispatch({ type: SET_STATUS, payload: rejected })
 			})
 	}
 
-	const nextPage = () => {
-		setPage(prev => prev + 1)
-	}
-	const prevPage = () => {
-		setPage(prev => prev - 1)
-	}
+	// const nextPage = () => {
+	// 	setPage(prev => prev + 1)
+	// }
+	// const prevPage = () => {
+	// 	setPage(prev => prev - 1)
+	// }
 
-	const handleChangeQuery = query => {
-		setQuery(query)
-	}
+	// const handleChangeQuery = query => {
+	// 	setQuery(query)
+	// }
 
 	return (
 		<div>
-			<GitHeader onChangeQuery={handleChangeQuery} />
+			<GitHeader dispatch={dispatch} />
 			<StyledBtns>
-				<StyledButton ref={myRef} border='2px' onClick={prevPage}>
+				<StyledButton
+					ref={myRef}
+					border='2px'
+					onClick={() => dispatch({ type: SET_PAGE, payload: -1 })}
+				>
 					Prev Page
 				</StyledButton>
-				<StyledButton border='2px' onClick={nextPage}>
+				<StyledButton
+					border='2px'
+					onClick={() => dispatch({ type: SET_PAGE, payload: 1 })}
+				>
 					Next Page
 				</StyledButton>
 			</StyledBtns>

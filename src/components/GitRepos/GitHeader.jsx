@@ -1,7 +1,8 @@
 import React, { useEffect, useRef, useState } from 'react'
 import { StyledHeader } from './GitRepos.styled'
+import { SET_QUERY } from '../../services/constants'
 
-export const GitHeader = ({ onChangeQuery }) => {
+export const GitHeader = ({ dispatch }) => {
 	const [search, setSearch] = useState('')
 	const inputRef = useRef(null)
 	useEffect(() => {
@@ -10,7 +11,7 @@ export const GitHeader = ({ onChangeQuery }) => {
 	const onSubmit = e => {
 		e.preventDefault()
 		console.log(inputRef)
-		onChangeQuery(search)
+		dispatch({ type: SET_QUERY, payload: inputRef.current.value })
 	}
 
 	return (

@@ -10,10 +10,10 @@ class App extends React.Component {
 	render() {
 		return (
 			<>
-				<Counter />
+				{/* <Counter /> */}
 				{/* <ColorPicker colorsData={colors} /> */}
 				{/* <TodoList /> */}
-				{/* <GitRepos /> */}
+				<GitRepos />
 				<ToastContainer autoClose={1000} />
 			</>
 		)

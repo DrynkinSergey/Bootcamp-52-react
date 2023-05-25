@@ -1,17 +1,24 @@
-import React, { Component, useEffect, useRef, useState } from 'react'
+import React, {
+	Component,
+	useContext,
+	useEffect,
+	useRef,
+	useState,
+} from 'react'
 import {
 	StyledBackgroundTheme,
 	StyledColorPalette,
 	StyledColor,
 	StyledColorsList,
 } from './ColorPicker.styled'
+import { MyContext } from '../../App'
 
-export const ColorPicker = ({ colorsData }) => {
-	const [colors] = useState(colorsData)
+export const ColorPicker = () => {
+	const { colors } = useContext(MyContext)
+
 	const [currentColor, setCurrentColor] = useState('white')
 	const isFirstRender = useRef(true)
 	useEffect(() => {
-		debugger
 		if (isFirstRender.current) {
 			isFirstRender.current = false
 			console.log('First render')

@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react'
 import { StyledHeader } from './GitRepos.styled'
 import { SET_QUERY } from '../../services/constants'
+import { ProductForm } from '../Product/ProductForm'
 
 export const GitHeader = ({ dispatch }) => {
 	const [search, setSearch] = useState('')
@@ -17,6 +18,7 @@ export const GitHeader = ({ dispatch }) => {
 	return (
 		<StyledHeader>
 			<h1>Welcome to GitRepos</h1>
+			<ProductForm />
 
 			<form onSubmit={onSubmit}>
 				<input

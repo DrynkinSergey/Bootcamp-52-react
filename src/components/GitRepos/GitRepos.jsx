@@ -1,4 +1,10 @@
-import React, { useEffect, useReducer, useRef, useState } from 'react'
+import React, {
+	useCallback,
+	useEffect,
+	useReducer,
+	useRef,
+	useState,
+} from 'react'
 import { GitHeader } from './GitHeader'
 import { GitReposList } from './GitReposList'
 import { StyledButton } from '../Counter/Counter.styled'
@@ -48,7 +54,6 @@ export const GitRepos = () => {
 					...state,
 					status: action.payload,
 				}
-				break
 			case SET_QUERY:
 				return {
 					...state,
@@ -67,13 +72,7 @@ export const GitRepos = () => {
 	const [state, dispatch] = useReducer(reposReducer, initialState)
 	const { page, query, repos, status } = state
 
-	useEffect(() => {
-		fetchData()
-		console.log(myRef)
-		// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, [state.page, state.query])
-
-	const fetchData = () => {
+	const fetchData = useCallback(() => {
 		const { pending, fulfilled, rejected } = STATUS
 		// setStatus(pending)
 		dispatch({ type: SET_STATUS, payload: pending })
@@ -91,7 +90,11 @@ export const GitRepos = () => {
 				// setStatus(rejected)
 				dispatch({ type: SET_STATUS, payload: rejected })
 			})
-	}
+	}, [page, query])
+
+	useEffect(() => {
+		fetchData()
+	}, [page, query, fetchData])
 
 	// const nextPage = () => {
 	// 	setPage(prev => prev + 1)

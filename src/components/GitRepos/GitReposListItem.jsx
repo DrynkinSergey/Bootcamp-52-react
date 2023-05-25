@@ -1,6 +1,7 @@
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import { StyledCard, StyledRepoImg } from './GitRepos.styled'
 import { Modal } from '../Modal/Modal'
+import { MyContext } from '../../App'
 
 export const GitReposListItem = ({
 	name,
@@ -12,7 +13,7 @@ export const GitReposListItem = ({
 	link,
 }) => {
 	const [isOpen, setIsOpen] = useState(false)
-
+	const { product } = useContext(MyContext)
 	const toggleModal = () => {
 		setIsOpen(!isOpen)
 	}
@@ -33,6 +34,7 @@ export const GitReposListItem = ({
 			<div>
 				<a href={link}>link</a>
 			</div>
+			<h1>Product from context {product}</h1>
 			{isOpen && (
 				<Modal onClose={toggleModal}>
 					<img src={url} alt='' />

@@ -6,7 +6,6 @@ import { GitRepos } from './components/GitRepos/GitRepos'
 import { Counter } from './components/Counter/Counter'
 import { ColorPicker } from './components/ColorPicker/ColorPicker'
 import { TodoList } from './components/TodoList/TodoList'
-import Modal from './components/Modal/Modal'
 class App extends React.Component {
 	render() {
 		return (

@@ -92,6 +92,9 @@ export const GitRepos = () => {
 			})
 	}, [page, query])
 
+	// xd01rx1
+	// dr01x1
+	// dr01x1 !== xd01rx1
 	useEffect(() => {
 		fetchData()
 	}, [page, query, fetchData])

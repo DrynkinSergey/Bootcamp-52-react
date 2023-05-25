@@ -13,14 +13,14 @@ export const MyContext = createContext()
 const App = () => {
 	const [product, setProduct] = useState('Laptop')
 
-	const value = {
+	const mySuperContextData = {
 		product,
 		setProduct,
 		colors,
 	}
 	return (
 		<>
-			<MyContext.Provider value={value}>
+			<MyContext.Provider value={mySuperContextData}>
 				<ProductList />
 				<ColorPicker />
 				<GitRepos />

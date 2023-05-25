@@ -2,6 +2,7 @@ import React, { useContext, useState } from 'react'
 import { MyContext } from '../../App'
 
 export const ProductForm = () => {
+	// context =>>>>> {product, setProduct, colors}
 	const { setProduct } = useContext(MyContext)
 	const [newProduct, setNewProduct] = useState('')
 	const onSubmit = e => {

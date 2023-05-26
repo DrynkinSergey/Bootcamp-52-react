@@ -1,9 +1,9 @@
 import React from 'react'
 import { Header } from './components/Header/Header'
 import { Todos } from './components/Todos/Todos'
-import { ContextProvider } from './HOC/ContextProvider'
 import { Filter } from './components/Filter/Filter'
 import { styled } from 'styled-components'
+import { ContextProvider } from './HOC/ContextProvider'
 
 export const App = () => {
 	return (
@@ -12,6 +12,7 @@ export const App = () => {
 				<Header />
 				<Todos />
 				<Filter />
+
 				{/* <Box />
 				<Box2 /> */}
 			</ContextProvider>

@@ -4,11 +4,13 @@ import { TodoContext } from '../../HOC/ContextProvider'
 import { styled } from 'styled-components'
 
 export const Header = () => {
-	const { uncompletedTodos } = useContext(TodoContext)
+	const { uncompletedTodos, getUsers } = useContext(TodoContext)
+
 	return (
 		<StyledHeader>
 			<h1>Todo List v2.0</h1>
 			<h2>you have: {uncompletedTodos} tasks</h2>
+			<button onClick={getUsers}>Get users</button>
 			<AddTodoForm />
 		</StyledHeader>
 	)

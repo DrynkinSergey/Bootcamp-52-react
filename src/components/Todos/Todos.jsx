@@ -3,7 +3,7 @@ import { TodoItem } from '../TodoItem/TodoItem'
 import { TodoContext } from '../../HOC/ContextProvider'
 
 export const Todos = () => {
-	const { todos } = useContext(TodoContext)
+	const { todos, users } = useContext(TodoContext)
 
 	return (
 		<ul>
@@ -11,6 +11,9 @@ export const Todos = () => {
 				const { todo, completed, id } = item
 				return <TodoItem key={id} {...item} />
 			})}
+			{users.map(item => (
+				<li>{item.name}</li>
+			))}
 		</ul>
 	)
 }

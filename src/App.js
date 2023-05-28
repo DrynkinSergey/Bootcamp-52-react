@@ -1,48 +1,30 @@
 import React from 'react'
-import { Header } from './components/Header/Header'
-import { Todos } from './components/Todos/Todos'
-import { Filter } from './components/Filter/Filter'
-import { styled } from 'styled-components'
-import { ContextProvider } from './HOC/ContextProvider'
+import { Route, Routes } from 'react-router-dom'
+import { Layout } from './components/Layout'
+import Users from './pages/Users'
+import { SingleUser } from './pages/SingleUser'
+import { UserPosts } from './pages/UserPosts'
+import { PostInfo } from './pages/PostInfo'
+import { Comments } from './pages/Comments'
+import { Login } from './pages/Login'
 
 export const App = () => {
 	return (
-		<Container>
-			<ContextProvider>
-				<Header />
-				<Todos />
-				<Filter />
+		<>
+			<Routes>
+				<Route path='/' element={<Layout />}>
+					<Route index element={<h1>Home page</h1>} />
+					<Route path='about' element={<h1>About page</h1>} />
+					<Route path='users' element={<Users />} />
+					<Route path='comments' element={<Comments />} />
+					<Route path='users/:id/' element={<SingleUser />}>
+						<Route path='posts' element={<UserPosts />} />
+					</Route>
 
-				{/* <Box />
-				<Box2 /> */}
-			</ContextProvider>
-		</Container>
+					<Route path='users/:id/posts/:id' element={<PostInfo />} />
+					<Route path='login' element={<Login />} />
+				</Route>
+			</Routes>
+		</>
 	)
 }
-const Box = styled.div`
-	height: 100px;
-	width: 100px;
-	background-color: red;
-`
-const Box2 = styled.div`
-	height: 200px;
-	width: 200px;
-	background-color: violet;
-`
-const Container = styled.div`
-	max-width: 80%;
-	margin: 0 auto;
-	@media (max-width: 768px) {
-		max-width: 100%;
-		padding: 0 15px;
-
-		div${Box} {
-			background-color: green;
-		}
-		div${Box2} {
-			background-color: tomato;
-			width: 100px;
-			height: 100px;
-		}
-	}
-`

@@ -1,27 +1,8 @@
-import { useContext } from 'react'
 import { NavLink } from 'react-router-dom'
 import styled from 'styled-components'
-import { TodoContext } from '../HOC/ContextProvider'
 
 export const NavBar = () => {
-	const navMap = [
-		{ path: '/', title: 'Home' },
-		{ path: '/about', title: 'About' },
-		{ path: '/users', title: 'Users' },
-		{ path: '/comments', title: 'Comments' },
-		{ path: '/login', title: 'Login' },
-	]
-	const { user } = useContext(TodoContext)
-	return (
-		<SideBar>
-			{user && <h1>{user}</h1>}
-			{navMap.map(({ path, title }) => (
-				<NavItem key={path} to={path}>
-					{title}
-				</NavItem>
-			))}
-		</SideBar>
-	)
+	return <SideBar></SideBar>
 }
 const SideBar = styled.nav`
 	background-color: #d5edfd;

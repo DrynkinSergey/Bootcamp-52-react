@@ -1,16 +1,13 @@
 import React from 'react'
-import { Outlet, useNavigate } from 'react-router-dom'
+import { Outlet } from 'react-router-dom'
 import styled from 'styled-components'
 import { NavBar } from './NavBar'
 
 export const Layout = () => {
-	const navigate = useNavigate()
 	return (
 		<LayoutWrapper>
 			<NavBar />
-
 			<WrapperOutlet>
-				<button onClick={() => navigate(-1)}>Go back</button>
 				<Outlet />
 			</WrapperOutlet>
 		</LayoutWrapper>

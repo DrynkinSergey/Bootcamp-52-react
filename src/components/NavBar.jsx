@@ -1,8 +1,14 @@
-import { NavLink } from 'react-router-dom'
+import { Link, NavLink } from 'react-router-dom'
 import styled from 'styled-components'
 
 export const NavBar = () => {
-	return <SideBar></SideBar>
+	return (
+		<SideBar>
+			<Link to='/'>Home</Link>
+			<Link to='/about'>About</Link>
+			<Link to='/login'>Login</Link>
+		</SideBar>
+	)
 }
 const SideBar = styled.nav`
 	background-color: #d5edfd;

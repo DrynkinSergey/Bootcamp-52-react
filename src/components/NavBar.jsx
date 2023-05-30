@@ -1,15 +1,24 @@
-import { Link, NavLink } from 'react-router-dom'
+import { NavLink } from 'react-router-dom'
 import styled from 'styled-components'
 
 export const NavBar = () => {
+	const navMap = [
+		{ href: '/', title: 'Home' },
+		{ href: '/about', title: 'About' },
+		{ href: '/colorPicker', title: 'Color Picker' },
+		{ href: '/login', title: 'Login' },
+	]
 	return (
 		<SideBar>
-			<Link to='/'>Home</Link>
-			<Link to='/about'>About</Link>
-			<Link to='/login'>Login</Link>
+			{navMap.map(link => (
+				<NavItem key={link.href} to={link.href}>
+					{link.title}
+				</NavItem>
+			))}
 		</SideBar>
 	)
 }
+
 const SideBar = styled.nav`
 	background-color: #d5edfd;
 	min-height: 100vh;
@@ -17,9 +26,11 @@ const SideBar = styled.nav`
 	display: flex;
 	flex-direction: column;
 	gap: 25px;
+	position: fixed;
+	width: 200px;
 	padding: 40px 20px;
 `
-const NavItem = styled(NavLink)`
+export const NavItem = styled(NavLink)`
 	display: flex;
 	align-items: center;
 	gap: 10px;

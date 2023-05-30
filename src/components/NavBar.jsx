@@ -5,7 +5,8 @@ export const NavBar = () => {
 	const navMap = [
 		{ href: '/', title: 'Home' },
 		{ href: '/about', title: 'About' },
-		{ href: '/colorPicker', title: 'Color Picker' },
+		{ href: '/users', title: 'Users' },
+		// { href: '/colorPicker', title: 'Color Picker' },
 		{ href: '/login', title: 'Login' },
 	]
 	return (

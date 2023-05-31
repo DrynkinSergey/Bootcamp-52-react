@@ -10,6 +10,9 @@ import { ColorPicker } from '../pages/ColorPicker/ColorPicker'
 import Users from '../pages/Users/Users'
 import SingleUserPage from '../pages/SingleUserPage/SingleUserPage'
 import UserPosts from '../pages/SingleUserPage/UserPosts'
+import PostsPage from '../pages/PostsPage/PostsPage'
+import Login from '../pages/Login/Login'
+import PrivateRoute from '../HOC/PrivateRoute'
 
 const RoutesList = () => {
 	return (
@@ -20,9 +23,17 @@ const RoutesList = () => {
 			<Route path='/' element={<Layout />}>
 				<Route index element={<HomePage />} />
 				<Route path='users' element={<Users />} />
+				<Route path='posts' element={<PostsPage />} />
 
 				<Route path='users/:id/' element={<SingleUserPage />}>
-					<Route path='posts' element={<UserPosts />} />
+					<Route
+						path='posts'
+						element={
+							<PrivateRoute>
+								<UserPosts />
+							</PrivateRoute>
+						}
+					/>
 				</Route>
 
 				<Route path='about' element={<AboutPage />}>
@@ -35,7 +46,7 @@ const RoutesList = () => {
 				</Route>
 
 				<Route path='colorPicker' element={<ColorPicker />} />
-				<Route path='login' element={<h1>Login</h1>} />
+				<Route path='login' element={<Login />} />
 			</Route>
 		</Routes>
 	)

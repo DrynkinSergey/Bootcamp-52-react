@@ -1,5 +1,10 @@
+import AuthProvider from './HOC/AuthProvider'
 import RoutesList from './components/Routes'
 
 export const App = () => {
-	return <RoutesList />
+	return (
+		<AuthProvider>
+			<RoutesList />
+		</AuthProvider>
+	)
 }

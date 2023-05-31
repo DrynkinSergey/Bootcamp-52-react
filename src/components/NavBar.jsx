@@ -1,16 +1,20 @@
 import { NavLink } from 'react-router-dom'
 import styled from 'styled-components'
+import { useAuth } from '../hooks/useAuth'
 
 export const NavBar = () => {
+	const { user } = useAuth()
 	const navMap = [
 		{ href: '/', title: 'Home' },
 		{ href: '/about', title: 'About' },
 		{ href: '/users', title: 'Users' },
+		{ href: '/posts', title: 'Posts' },
 		// { href: '/colorPicker', title: 'Color Picker' },
 		{ href: '/login', title: 'Login' },
 	]
 	return (
 		<SideBar>
+			<h1>{user}</h1>
 			{navMap.map(link => (
 				<NavItem key={link.href} to={link.href}>
 					{link.title}

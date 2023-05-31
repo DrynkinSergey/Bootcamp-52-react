@@ -1,20 +1,15 @@
-import axios from 'axios'
-import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
+import { useFetch } from '../../hooks/useFetch'
+import { fetchUserPosts } from '../../services/Api'
+import { useCallback } from 'react'
 
 const UserPosts = () => {
 	const { id } = useParams()
-	const [posts, setPosts] = useState([])
-	useEffect(() => {
-		const fetchUsers = async () => {
-			const res = await axios.get(`https://dummyjson.com/posts/user/${id}`)
-			setPosts(res.data.posts)
-		}
-		fetchUsers()
-	}, [id])
+	const fn = useCallback(() => fetchUserPosts(id), [id])
+	const [posts, setPosts] = useFetch(fn)
 	return (
 		<div>
-			UserPosts
+			<h1>UserPosts</h1>
 			<ul>
 				{posts.map((post, index) => (
 					<li key={post.id}>

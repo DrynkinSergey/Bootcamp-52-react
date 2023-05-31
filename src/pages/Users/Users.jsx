@@ -1,16 +1,9 @@
-import axios from 'axios'
-import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
+import { useFetch } from '../../hooks/useFetch'
+import { fetchUsers } from '../../services/Api.js'
 
 const Users = () => {
-	const [users, setUsers] = useState([])
-	useEffect(() => {
-		const fetchUsers = async () => {
-			const res = await axios.get('https://jsonplaceholder.typicode.com/users')
-			setUsers(res.data)
-		}
-		fetchUsers()
-	}, [])
+	const [users] = useFetch(fetchUsers)
 	return (
 		<>
 			<h1>Users</h1>

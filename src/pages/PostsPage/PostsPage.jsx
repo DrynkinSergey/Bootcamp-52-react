@@ -1,21 +1,15 @@
 import axios from 'axios'
 import React, { useEffect, useState } from 'react'
 import { useSearchParams } from 'react-router-dom'
+import { useFetch } from '../../hooks/useFetch'
+import { fetchPosts } from '../../services/Api'
 
 const PostsPage = () => {
-	const [posts, setPosts] = useState([])
+	const [posts, setPosts] = useFetch(fetchPosts)
 
 	const [searchParams, setSearchParams] = useSearchParams()
-	const query = searchParams.get('query')
-	useEffect(() => {
-		const fetchData = async () => {
-			try {
-				const res = await axios.get('https://dummyjson.com/posts')
-				setPosts(res.data.posts)
-			} catch (error) {}
-		}
-		fetchData()
-	}, [])
+	const query = searchParams.get('q')
+
 	useEffect(() => {
 		if (!query) {
 			return
@@ -34,7 +28,7 @@ const PostsPage = () => {
 	const filterPosts = e => {
 		e.preventDefault()
 		const queryStr = e.target.query.value
-		setSearchParams(queryStr ? { query: queryStr } : {})
+		setSearchParams(queryStr ? { q: queryStr } : {})
 	}
 	// const filteredData = query
 	// 	? posts.filter(post => post.title.includes(query))

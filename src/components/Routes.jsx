@@ -4,9 +4,7 @@ import NotFound from '../pages/NotFound'
 import { Layout } from './Layout'
 import HomePage from '../pages/HomePage'
 import { AboutPage, OurAim, OurMission } from '../pages/AboutPage'
-// import AboutPage from '../pages/AboutPage/AboutPage'
-// import OurAim from '../pages/AboutPage/OurAim'
-// import OurMission from '../pages/AboutPage/OurMission'
+
 import { ColorPicker } from '../pages/ColorPicker/ColorPicker'
 
 import Login from '../pages/Login/Login'

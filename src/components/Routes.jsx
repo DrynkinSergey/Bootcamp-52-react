@@ -1,18 +1,24 @@
-import React from 'react'
+import React, { lazy } from 'react'
 import { Navigate, Route, Routes } from 'react-router-dom'
 import NotFound from '../pages/NotFound'
 import { Layout } from './Layout'
 import HomePage from '../pages/HomePage'
-import AboutPage from '../pages/AboutPage/AboutPage'
-import OurAim from '../pages/AboutPage/OurAim'
-import OurMission from '../pages/AboutPage/OurMission'
+import { AboutPage, OurAim, OurMission } from '../pages/AboutPage'
+// import AboutPage from '../pages/AboutPage/AboutPage'
+// import OurAim from '../pages/AboutPage/OurAim'
+// import OurMission from '../pages/AboutPage/OurMission'
 import { ColorPicker } from '../pages/ColorPicker/ColorPicker'
-import Users from '../pages/Users/Users'
-import SingleUserPage from '../pages/SingleUserPage/SingleUserPage'
-import UserPosts from '../pages/SingleUserPage/UserPosts'
-import PostsPage from '../pages/PostsPage/PostsPage'
+
 import Login from '../pages/Login/Login'
 import PrivateRoute from '../HOC/PrivateRoute'
+import PublicRoute from '../HOC/PublicRoute'
+
+const Users = lazy(() => import('../pages/Users/Users'))
+const PostsPage = lazy(() => import('../pages/PostsPage/PostsPage'))
+const UserPosts = lazy(() => import('../pages/SingleUserPage/UserPosts'))
+const SingleUserPage = lazy(() =>
+	import('../pages/SingleUserPage/SingleUserPage')
+)
 
 const RoutesList = () => {
 	return (
@@ -23,7 +29,15 @@ const RoutesList = () => {
 			<Route path='/' element={<Layout />}>
 				<Route index element={<HomePage />} />
 				<Route path='users' element={<Users />} />
-				<Route path='posts' element={<PostsPage />} />
+
+				<Route
+					path='posts'
+					element={
+						<PrivateRoute>
+							<PostsPage />
+						</PrivateRoute>
+					}
+				/>
 
 				<Route path='users/:id/' element={<SingleUserPage />}>
 					<Route
@@ -46,8 +60,15 @@ const RoutesList = () => {
 				</Route>
 
 				<Route path='colorPicker' element={<ColorPicker />} />
-				<Route path='login' element={<Login />} />
 			</Route>
+			<Route
+				path='/login'
+				element={
+					<PublicRoute>
+						<Login />
+					</PublicRoute>
+				}
+			/>
 		</Routes>
 	)
 }

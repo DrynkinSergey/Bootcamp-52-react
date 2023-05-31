@@ -2,14 +2,13 @@ import React, { createContext, useState } from 'react'
 
 export const AuthContext = createContext()
 const AuthProvider = ({ children }) => {
-	const [user, setUser] = useState()
+	const [user, setUser] = useState('Test')
 	const login = (userName, callback) => {
 		setUser(userName)
 		callback()
 	}
-	const logout = callback => {
+	const logout = () => {
 		setUser()
-		callback()
 	}
 	const value = { user, login, logout }
 	return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>

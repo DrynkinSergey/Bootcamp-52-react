@@ -1,16 +1,16 @@
-import { NavLink } from 'react-router-dom'
+import { NavLink, useNavigate } from 'react-router-dom'
 import styled from 'styled-components'
 import { useAuth } from '../hooks/useAuth'
 
 export const NavBar = () => {
-	const { user } = useAuth()
+	const { user, logout } = useAuth()
+	const navigate = useNavigate()
 	const navMap = [
 		{ href: '/', title: 'Home' },
 		{ href: '/about', title: 'About' },
 		{ href: '/users', title: 'Users' },
 		{ href: '/posts', title: 'Posts' },
 		// { href: '/colorPicker', title: 'Color Picker' },
-		{ href: '/login', title: 'Login' },
 	]
 	return (
 		<SideBar>
@@ -20,6 +20,13 @@ export const NavBar = () => {
 					{link.title}
 				</NavItem>
 			))}
+			<div>
+				{user ? (
+					<button onClick={() => logout()}>Logout</button>
+				) : (
+					<button onClick={() => navigate('/login')}>Login</button>
+				)}
+			</div>
 		</SideBar>
 	)
 }

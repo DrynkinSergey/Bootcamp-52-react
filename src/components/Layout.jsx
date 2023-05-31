@@ -1,7 +1,8 @@
-import React from 'react'
+import React, { Suspense } from 'react'
 import { Outlet, useLocation, useNavigate } from 'react-router-dom'
 import styled from 'styled-components'
 import { NavBar } from './NavBar'
+import { Blocks } from 'react-loader-spinner'
 
 export const Layout = () => {
 	const navigate = useNavigate()
@@ -15,7 +16,20 @@ export const Layout = () => {
 					<button onClick={() => navigate(-1)}>Go Back</button>
 				)}
 				{/* <button onClick={() => navigate(1)}>Go Next</button> */}
-				<Outlet />
+				<Suspense
+					fallback={
+						<Blocks
+							visible={true}
+							height='80'
+							width='80'
+							ariaLabel='blocks-loading'
+							wrapperStyle={{}}
+							wrapperClass='blocks-wrapper'
+						/>
+					}
+				>
+					<Outlet />
+				</Suspense>
 			</WrapperOutlet>
 		</LayoutWrapper>
 	)

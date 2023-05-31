@@ -1,0 +1,6 @@
+// export  {AboutPage} from './AboutPage.jsx'
+// export  {OurAim} from './OurAim.jsx'
+// export {OurMission} from './OurMission.jsx'
+export { default as AboutPage } from './AboutPage.jsx'
+export { default as OurAim } from './OurAim.jsx'
+export { default as OurMission } from './OurMission.jsx'

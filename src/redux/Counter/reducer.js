@@ -4,9 +4,9 @@ const initialState = {
 	count: 0,
 	step: 1,
 }
+
 export const countReducer = (state = initialState, action) => {
 	const { type, payload } = action
-	console.log(action)
 	switch (type) {
 		case INCREMENT:
 			return {

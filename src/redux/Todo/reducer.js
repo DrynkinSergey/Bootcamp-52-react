@@ -1,7 +1,8 @@
-import { ADD_TODO, DELETE_TODO } from './constants'
+import { ADD_TODO, DELETE_TODO, SET_FILTER, TOGGLE_TODO } from './constants'
 
 const initialState = {
-	todos: [{ id: 1, title: 'redux' }],
+	todos: [],
+	filter: 'All',
 }
 
 export const todoReducer = (state = initialState, action) => {
@@ -16,6 +17,22 @@ export const todoReducer = (state = initialState, action) => {
 			return {
 				...state,
 				todos: state.todos.filter(todo => todo.id !== action.payload),
+			}
+		}
+		case TOGGLE_TODO: {
+			return {
+				...state,
+				todos: state.todos.map(todo =>
+					todo.id === action.payload
+						? { ...todo, completed: !todo.completed }
+						: todo
+				),
+			}
+		}
+		case SET_FILTER: {
+			return {
+				...state,
+				filter: action.payload,
 			}
 		}
 		default:

@@ -1,7 +1,11 @@
-import { createStore } from 'redux'
+import { combineReducers, createStore } from 'redux'
 import { countReducer } from './Counter/reducer'
+import { devToolsEnhancer } from '@redux-devtools/extension'
+import { todoReducer } from './Todo/reducer'
+const enhancer = devToolsEnhancer()
 
-export const store = createStore(
-	countReducer,
-	window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
-)
+const rootReducer = combineReducers({
+	counter: countReducer,
+	tasks: todoReducer,
+})
+export const store = createStore(rootReducer, enhancer)

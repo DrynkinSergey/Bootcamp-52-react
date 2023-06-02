@@ -1,5 +1,7 @@
+import { CuteTodo } from './components/Todo/CuteTodo'
+import './index.css'
 function App() {
-	return <div></div>
+	return <CuteTodo />
 }
 
 export default App

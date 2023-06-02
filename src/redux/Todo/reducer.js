@@ -6,22 +6,40 @@ const initialState = {
 	filter: 'All',
 }
 
-export const todoReducer = createReducer(initialState, {
-	[addTodo]: (state, { payload }) => {
+//With builder
+export const todoReducer = createReducer(initialState, builder => {
+	builder.addCase(addTodo, (state, { payload }) => {
 		state.todos.push(payload)
-	},
-	[deleteTodo]: (state, { payload }) => {
+	})
+	builder.addCase(deleteTodo, (state, { payload }) => {
 		const todoIndex = state.todos.findIndex(todo => todo.id === payload)
 		state.todos.splice(todoIndex, 1)
-	},
-	[toggleTodo]: (state, { payload }) => {
+	})
+	builder.addCase(toggleTodo, (state, { payload }) => {
 		const todo = state.todos.find(todo => todo.id === payload)
 		todo.completed = !todo.completed
-	},
-	[setFilter]: (state, { payload }) => {
+	})
+	builder.addCase(setFilter, (state, { payload }) => {
 		state.filter = payload
-	},
+	})
 })
+//Without builder
+// export const todoReducer = createReducer(initialState, {
+// 	[addTodo]: (state, { payload }) => {
+// 		state.todos.push(payload)
+// 	},
+// 	[deleteTodo]: (state, { payload }) => {
+// 		const todoIndex = state.todos.findIndex(todo => todo.id === payload)
+// 		state.todos.splice(todoIndex, 1)
+// 	},
+// 	[toggleTodo]: (state, { payload }) => {
+// 		const todo = state.todos.find(todo => todo.id === payload)
+// 		todo.completed = !todo.completed
+// 	},
+// 	[setFilter]: (state, { payload }) => {
+// 		state.filter = payload
+// 	},
+// })
 // export const todoReducer = (state = initialState, action) => {
 // 	switch (action.type) {
 // 		case addTodo.type: {

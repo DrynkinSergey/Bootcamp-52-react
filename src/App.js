@@ -24,7 +24,7 @@ function App() {
 	return (
 		<div>
 			<TodoList />
-			<Counter />
+			{/* <Counter /> */}
 		</div>
 	)
 }

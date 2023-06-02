@@ -1,4 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit'
+import { setFilter } from '../filterSlice'
 
 const todoSlice = createSlice({
 	name: 'todos',
@@ -17,6 +18,11 @@ const todoSlice = createSlice({
 			const todoIndex = state.todos.findIndex(todo => todo.id === payload)
 			state.todos.splice(todoIndex, 1)
 		},
+	},
+	extraReducers: builder => {
+		builder.addCase(setFilter, (state, action) => {
+			state.todos = []
+		})
 	},
 })
 

@@ -4,8 +4,8 @@ import TodoList from './components/TodoList/TodoList'
 function App() {
 	return (
 		<div>
-			{/* <Counter /> */}
-			<TodoList />
+			<Counter />
+			{/* <TodoList /> */}
 		</div>
 	)
 }

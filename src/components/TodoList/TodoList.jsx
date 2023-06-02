@@ -1,27 +1,24 @@
 import React, { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import {
-	addTodoAC,
-	deleteTodoAC,
-	setFilterAC,
-	toggleTodoAC,
+	addTodo,
+	deleteTodo,
+	setFilter,
+	toggleTodo,
 } from '../../redux/Todo/actions'
-import {
-	selectFilter,
-	selectFilteredData,
-	selectTodos,
-} from '../../redux/Todo/selectors'
+import { selectFilter, selectFilteredData } from '../../redux/Todo/selectors'
 
 const TodoList = () => {
 	const filter = useSelector(selectFilter)
 	const filteredData = useSelector(state => selectFilteredData(state, filter))
-	console.log(filter)
 	const dispatch = useDispatch()
 	const [value, setValue] = useState('')
 
 	const submitHandler = e => {
 		e.preventDefault()
-		dispatch(addTodoAC(value))
+		dispatch(
+			addTodo({ title: value, id: crypto.randomUUID(), completed: false })
+		)
 		setValue('')
 	}
 	// const getFilteredData = filter => {
@@ -55,20 +52,20 @@ const TodoList = () => {
 							<input
 								type='checkbox'
 								checked={todo.completed}
-								onChange={() => dispatch(toggleTodoAC(todo.id))}
+								onChange={() => dispatch(toggleTodo(todo.id))}
 							/>
 						</span>
 						{idx + 1}. {todo.title}
-						<button onClick={() => dispatch(deleteTodoAC(todo.id))}>
+						<button onClick={() => dispatch(deleteTodo(todo.id))}>
 							Delete
 						</button>
 					</li>
 				))}
 			</ul>
 			<div>
-				<button onClick={() => dispatch(setFilterAC('All'))}>All</button>
-				<button onClick={() => dispatch(setFilterAC('Active'))}>Active</button>
-				<button onClick={() => dispatch(setFilterAC('Completed'))}>
+				<button onClick={() => dispatch(setFilter('All'))}>All</button>
+				<button onClick={() => dispatch(setFilter('Active'))}>Active</button>
+				<button onClick={() => dispatch(setFilter('Completed'))}>
 					Completed
 				</button>
 			</div>

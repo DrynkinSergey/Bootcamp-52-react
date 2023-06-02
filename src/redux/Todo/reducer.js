@@ -1,4 +1,4 @@
-import { ADD_TODO, DELETE_TODO, SET_FILTER, TOGGLE_TODO } from './constants'
+import { addTodo, deleteTodo, setFilter, toggleTodo } from './actions'
 
 const initialState = {
 	todos: [],
@@ -7,19 +7,19 @@ const initialState = {
 
 export const todoReducer = (state = initialState, action) => {
 	switch (action.type) {
-		case ADD_TODO: {
+		case addTodo.type: {
 			return {
 				...state,
 				todos: [...state.todos, action.payload],
 			}
 		}
-		case DELETE_TODO: {
+		case deleteTodo.type: {
 			return {
 				...state,
 				todos: state.todos.filter(todo => todo.id !== action.payload),
 			}
 		}
-		case TOGGLE_TODO: {
+		case toggleTodo.type: {
 			return {
 				...state,
 				todos: state.todos.map(todo =>
@@ -29,7 +29,7 @@ export const todoReducer = (state = initialState, action) => {
 				),
 			}
 		}
-		case SET_FILTER: {
+		case setFilter.type: {
 			return {
 				...state,
 				filter: action.payload,

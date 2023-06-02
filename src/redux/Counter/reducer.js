@@ -8,11 +8,9 @@ const initialState = {
 
 export const countReducer = createReducer(initialState, {
 	[increment]: (state, action) => {
-		console.log(action)
 		state.count += action.payload
 	},
 	[decrement]: (state, action) => {
-		console.log(action)
 		state.count -= action.payload
 	},
 })

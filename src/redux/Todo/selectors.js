@@ -1,5 +1,5 @@
 export const selectTodos = state => state.tasks.todos
-export const selectFilter = state => state.tasks.filter
+export const selectFilter = state => state.filter
 
 export const selectFilteredData = (state, filter) => {
 	switch (filter) {

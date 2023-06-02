@@ -1,19 +1,13 @@
-import { createReducer } from '@reduxjs/toolkit'
-import { decrement, increment } from './actions'
+// import { createSlice } from '@reduxjs/toolkit'
 
-const initialState = {
-	count: 0,
-	step: 1,
-}
-
-export const countReducer = createReducer(initialState, builder => {
-	builder.addCase(increment, (state, action) => {
-		state.count += action.payload
-	})
-	builder.addCase(decrement, (state, action) => {
-		state.count -= action.payload
-	})
-})
+// export const countReducer = createReducer(initialState, builder => {
+// 	builder.addCase(increment, (state, action) => {
+// 		state.count += action.payload
+// 	})
+// 	builder.addCase(decrement, (state, action) => {
+// 		state.count -= action.payload
+// 	})
+// })
 // export const countReducer = createReducer(initialState, {
 // 	[increment]: (state, action) => {
 // 		state.count += action.payload

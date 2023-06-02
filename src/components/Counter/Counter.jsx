@@ -1,7 +1,7 @@
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import styled from 'styled-components'
-import { increment, decrement } from '../../redux/Counter/actions'
+import { decrement, counterIncrement } from '../../redux/Counter/counterSlice'
 
 const Counter = () => {
 	const counter = useSelector(state => state.counter.count)
@@ -14,8 +14,8 @@ const Counter = () => {
 				{/* <Button onClick={() => dispatch(addTodoAC('hello im work'))}>-5</Button> */}
 
 				<h1>{counter}</h1>
-				<Button onClick={() => dispatch(increment(1))}>+1</Button>
-				<Button onClick={() => dispatch(increment(10))}>+10</Button>
+				<Button onClick={() => dispatch(counterIncrement(1))}>+1</Button>
+				<Button onClick={() => dispatch(counterIncrement(10))}>+10</Button>
 			</Flex>
 		</Wrapper>
 	)

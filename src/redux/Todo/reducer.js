@@ -1,28 +1,28 @@
-import { createReducer } from '@reduxjs/toolkit'
-import { addTodo, deleteTodo, setFilter, toggleTodo } from './actions'
+// import { createReducer } from '@reduxjs/toolkit'
+// import { addTodo, deleteTodo, setFilter, toggleTodo } from './actions'
 
-const initialState = {
-	todos: [],
-	filter: 'All',
-}
+// const initialState = {
+// 	todos: [],
+// 	filter: 'All',
+// }
 
-//With builder
-export const todoReducer = createReducer(initialState, builder => {
-	builder.addCase(addTodo, (state, { payload }) => {
-		state.todos.push(payload)
-	})
-	builder.addCase(deleteTodo, (state, { payload }) => {
-		const todoIndex = state.todos.findIndex(todo => todo.id === payload)
-		state.todos.splice(todoIndex, 1)
-	})
-	builder.addCase(toggleTodo, (state, { payload }) => {
-		const todo = state.todos.find(todo => todo.id === payload)
-		todo.completed = !todo.completed
-	})
-	builder.addCase(setFilter, (state, { payload }) => {
-		state.filter = payload
-	})
-})
+// //With builder
+// export const todoReducer = createReducer(initialState, builder => {
+// 	builder.addCase(addTodo, (state, { payload }) => {
+// 		state.todos.push(payload)
+// 	})
+// 	builder.addCase(deleteTodo, (state, { payload }) => {
+// 		const todoIndex = state.todos.findIndex(todo => todo.id === payload)
+// 		state.todos.splice(todoIndex, 1)
+// 	})
+// 	builder.addCase(toggleTodo, (state, { payload }) => {
+// 		const todo = state.todos.find(todo => todo.id === payload)
+// 		todo.completed = !todo.completed
+// 	})
+// 	builder.addCase(setFilter, (state, { payload }) => {
+// 		state.filter = payload
+// 	})
+// })
 //Without builder
 // export const todoReducer = createReducer(initialState, {
 // 	[addTodo]: (state, { payload }) => {

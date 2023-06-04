@@ -1,15 +1,9 @@
-import { useDispatch } from 'react-redux'
-import { addTodoThunk } from '../../redux/Todo/operations'
-
 export const AddForm = ({ onSubmit }) => {
-	const dispatch = useDispatch()
-	// const filter = useSelector(state => state.todoList.filterStr)
 	const handleSubmit = e => {
 		e.preventDefault()
 		if (e.target.addTodo.value.trim()) {
 			const title = e.target.addTodo.value.trim()
-			// dispatch(addTodo({ title, completed: false, id: new Date().getTime() }))
-			dispatch(addTodoThunk(title))
+			console.log(title)
 			e.target.reset()
 			e.target.focus()
 		}

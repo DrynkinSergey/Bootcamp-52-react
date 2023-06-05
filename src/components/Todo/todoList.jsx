@@ -5,6 +5,7 @@ import { useEffect } from 'react'
 
 export const TodoList = () => {
 	const todos = useSelector(selectTodos)
+	const loading = useSelector(selectLoading)
 	const dispatch = useDispatch()
 	useEffect(() => {}, [dispatch])
 	const ViewData = () =>
@@ -13,7 +14,7 @@ export const TodoList = () => {
 	return (
 		<div className='font-josefin bg-darkMain shadow-mainDark'>
 			<ul className='rounded-md overflow-hidden'>
-				<ViewData />
+				{loading ? <h1 className='text-white'>Loading...</h1> : <ViewData />}
 			</ul>
 		</div>
 	)

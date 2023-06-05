@@ -1,10 +1,16 @@
-import React, { useMemo } from 'react'
+import React, { useEffect, useMemo } from 'react'
 import bg from './../../assets/images/bg-desktop-dark.jpg'
 import bgMobile from './../../assets/images/bg-mobile-dark.jpg'
 import { AddForm } from './AddForm'
 import { TodoList } from './todoList'
+import { useDispatch } from 'react-redux'
+import { fetchTodosThunk } from '../../redux/Todo/operations'
 
 export const CuteTodo = () => {
+	const dispatch = useDispatch()
+	useEffect(() => {
+		dispatch(fetchTodosThunk())
+	}, [dispatch])
 	const bgImage = useMemo(
 		() => (
 			<>

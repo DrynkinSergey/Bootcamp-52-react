@@ -1,4 +1,5 @@
 import { createSlice, nanoid } from '@reduxjs/toolkit'
+import { addTodoThunk, deleteTodoThunk, fetchTodosThunk } from './operations'
 
 const initialState = {
 	todos: [],
@@ -10,28 +11,45 @@ const initialState = {
 const todoSlice = createSlice({
 	name: 'todos',
 	initialState,
-	reducers: {
-		fetching: (state, action) => {
-			state.loading = true
-		},
-		error: (state, action) => {
-			state.loading = false
-			state.error = action.payload
-		},
-		success: (state, action) => {
-			state.error = ''
-			state.loading = false
-		},
-		addTodo: (state, action) => {
-			state.todos.push(action.payload)
-		},
-		fetchTodos: (state, action) => {
-			state.todos = action.payload
-		},
-		deleteTodo: (state, action) => {
-			const index = state.todos.findIndex(item => item.id === action.payload)
-			state.todos.splice(index, 1)
-		},
+
+	extraReducers: builder => {
+		builder
+			.addCase(fetchTodosThunk.fulfilled, (state, action) => {
+				state.todos = action.payload
+			})
+			.addCase(addTodoThunk.fulfilled, (state, action) => {
+				state.todos.push(action.payload)
+			})
+			.addCase(deleteTodoThunk.fulfilled, (state, action) => {
+				// console.log(action.payload)
+				const index = state.todos.findIndex(item => item.id === action.payload)
+				state.todos.splice(index, 1)
+				// return {
+				// 	...state,
+				// 	todos: state.todos.filter(todo => todo.id !== action.payload),
+				// }
+			})
+
+			.addMatcher(
+				action => action.type.endsWith('/fulfilled'),
+				(state, action) => {
+					state.loading = false
+				}
+			)
+			.addMatcher(
+				action => action.type.endsWith('/pending'),
+				(state, action) => {
+					state.loading = true
+					state.error = ''
+				}
+			)
+			.addMatcher(
+				action => action.type.endsWith('/rejected'),
+				(state, action) => {
+					state.error = action.payload
+					state.loading = false
+				}
+			)
 	},
 })
 

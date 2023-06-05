@@ -14,7 +14,7 @@ export const TodoList = () => {
 	return (
 		<div className='font-josefin bg-darkMain shadow-mainDark'>
 			<ul className='rounded-md overflow-hidden'>
-				{loading ? <h1 className='text-white'>Loading...</h1> : <ViewData />}
+				<ViewData />
 			</ul>
 		</div>
 	)

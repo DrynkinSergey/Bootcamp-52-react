@@ -1,6 +1,4 @@
 import { useDispatch } from 'react-redux'
-import { addTodo } from '../../redux/Todo/todoSlice'
-import { nanoid } from '@reduxjs/toolkit'
 import { addTodoThunk } from '../../redux/Todo/operations'
 export const AddForm = ({ onSubmit }) => {
 	const dispatch = useDispatch()

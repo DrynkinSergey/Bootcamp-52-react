@@ -28,8 +28,6 @@ export const addTodoThunk = createAsyncThunk(
 	async (title, thunkAPI) => {
 		try {
 			const res = await axios.post('/todos', { title, completed: false })
-			thunkAPI.dispatch({ type: 'HELLO' })
-			console.log(thunkAPI.getState())
 			return res.data
 		} catch (error) {
 			return thunkAPI.rejectWithValue(error.message)

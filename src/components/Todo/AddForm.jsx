@@ -1,12 +1,12 @@
-import { useDispatch } from 'react-redux'
-import { addTodoThunk } from '../../redux/Todo/operations'
+import { useAddTodoMutation } from '../../redux/todosApi'
+
 export const AddForm = ({ onSubmit }) => {
-	const dispatch = useDispatch()
+	const [addTodo, { isLoading, isError }] = useAddTodoMutation()
 	const handleSubmit = e => {
 		e.preventDefault()
 		if (e.target.addTodo.value.trim()) {
 			const title = e.target.addTodo.value.trim()
-			dispatch(addTodoThunk(title))
+			addTodo({ title })
 			e.target.reset()
 			e.target.focus()
 		}

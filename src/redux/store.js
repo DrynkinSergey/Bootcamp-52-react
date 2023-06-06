@@ -2,13 +2,16 @@ import { configureStore } from '@reduxjs/toolkit'
 import { todoReducer } from './Todo/todoSlice'
 import { filterReducer } from './Todo/filterSlice'
 import { themeReducer } from './themeSlice'
+import { todosApi } from './todosApi'
 
 export const store = configureStore({
 	reducer: {
 		todoList: todoReducer,
 		filter: filterReducer,
 		theme: themeReducer,
+		[todosApi.reducerPath]: todosApi.reducer,
 	},
-	middleware: getDefaultMiddleware => getDefaultMiddleware(),
+	middleware: getDafualtMiddleware =>
+		getDafualtMiddleware().concat(todosApi.middleware),
 	devTools: process.env.NODE_ENV !== 'production',
 })

@@ -4,9 +4,9 @@ import { useGetTodosQuery } from '../../redux/todosApi'
 
 export const TodoList = () => {
 	const ViewData = () =>
-		todos.map(todo => <SingleTodo key={todo.id} {...todo} />).reverse()
+		data.map(todo => <SingleTodo key={todo.id} {...todo} />).reverse()
 
-	const { data: todos = [], isLoading, isError } = useGetTodosQuery()
+	const { data = [], isLoading, isError } = useGetTodosQuery()
 	return (
 		<div className='font-josefin bg-darkMain shadow-mainDark'>
 			<ul className='rounded-md overflow-hidden'>

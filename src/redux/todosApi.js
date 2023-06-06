@@ -13,7 +13,6 @@ export const todosApi = createApi({
 			query: () => 'todos',
 			providesTags: ['todos'],
 		}),
-
 		addTodo: builder.mutation({
 			query: body => ({
 				url: `todos`,
@@ -33,7 +32,7 @@ export const todosApi = createApi({
 			query: body => ({
 				url: `todos/${body.id}`,
 				method: 'PUT',
-				body,
+				body: { completed: body.completed },
 			}),
 			invalidatesTags: ['todos'],
 		}),

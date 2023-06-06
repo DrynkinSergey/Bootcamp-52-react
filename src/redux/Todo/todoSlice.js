@@ -3,8 +3,7 @@ import { addTodoThunk, deleteTodoThunk, fetchTodosThunk } from './operations'
 
 const initialState = {
 	todos: [],
-	users: [],
-	filterStr: '',
+	counter: 1,
 	error: '',
 	loading: false,
 }
@@ -12,6 +11,11 @@ const initialState = {
 const todoSlice = createSlice({
 	name: 'todos',
 	initialState,
+	reducers: {
+		setCounter: (state, action) => {
+			state.counter = state.counter + 2
+		},
+	},
 	extraReducers: builder => {
 		builder
 			.addCase(fetchTodosThunk.fulfilled, (state, action) => {
@@ -48,13 +52,5 @@ const todoSlice = createSlice({
 	},
 })
 
-export const {
-	addTodo,
-	deleteTodo,
-	fetchData,
-	fetchTodos,
-	error,
-	success,
-	fetching,
-} = todoSlice.actions
+export const { setCounter } = todoSlice.actions
 export const todoReducer = todoSlice.reducer

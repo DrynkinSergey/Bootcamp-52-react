@@ -21,13 +21,8 @@ const todoSlice = createSlice({
 				state.todos.push(action.payload)
 			})
 			.addCase(deleteTodoThunk.fulfilled, (state, action) => {
-				// console.log(action.payload)
 				const index = state.todos.findIndex(item => item.id === action.payload)
 				state.todos.splice(index, 1)
-				// return {
-				// 	...state,
-				// 	todos: state.todos.filter(todo => todo.id !== action.payload),
-				// }
 			})
 
 			.addMatcher(

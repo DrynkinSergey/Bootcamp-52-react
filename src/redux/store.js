@@ -6,7 +6,6 @@ import { todosApi } from './todosApi'
 
 export const store = configureStore({
 	reducer: {
-		todoList: todoReducer,
 		filter: filterReducer,
 		theme: themeReducer,
 		[todosApi.reducerPath]: todosApi.reducer,

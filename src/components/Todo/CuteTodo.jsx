@@ -11,9 +11,9 @@ import { toggleTheme } from '../../redux/themeSlice'
 export const CuteTodo = () => {
 	const dispatch = useDispatch()
 	const theme = useSelector(selectTheme)
-	useEffect(() => {
-		dispatch(fetchTodosThunk())
-	}, [dispatch])
+	// useEffect(() => {
+	// 	dispatch(fetchTodosThunk())
+	// }, [dispatch])
 	const bgImage = useMemo(
 		() => (
 			<>

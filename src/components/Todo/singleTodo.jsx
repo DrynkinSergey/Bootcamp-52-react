@@ -4,7 +4,7 @@ import {
 	useToggleTodoMutation,
 } from '../../redux/todosApi'
 export const SingleTodo = ({ id, title, completed }) => {
-	const [deleteTodo] = useDeleteTodoMutation()
+	const [deleteTodo, { isLoading }] = useDeleteTodoMutation()
 	const [toggleTodo] = useToggleTodoMutation()
 	const stylesActive = completed
 		? 'bg-gradient-to-br from-checkboxFrom to-checkboxTo'
@@ -17,7 +17,7 @@ export const SingleTodo = ({ id, title, completed }) => {
 					type='checkbox'
 					className='absolute opacity-0 cursor-pointer h-0 w-0'
 					checked={completed}
-					onClick={() => toggleTodo({ id, completed: !completed })}
+					onChange={() => toggleTodo({ id, completed: !completed })}
 				/>
 				<span
 					className={`${stylesActive} absolute h-5 w-5 flex items-center justify-center  left-4 top-[-10px] rounded-full border-white/20 border-[1px]`}
@@ -35,6 +35,7 @@ export const SingleTodo = ({ id, title, completed }) => {
 				{title}
 			</span>
 			<button
+				disabled={isLoading}
 				onClick={() => deleteTodo(id)}
 				className=' transition-all hidden text-white/20 hover:text-white  group-hover:block mx-auto'
 			>

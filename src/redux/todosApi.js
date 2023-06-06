@@ -3,6 +3,8 @@ import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 export const todosApi = createApi({
 	tagTypes: ['todos'],
 	reducerPath: 'todosApi',
+	// Додається для рефетчу при фокусі
+	refetchOnFocus: true,
 	baseQuery: fetchBaseQuery({
 		baseUrl: 'https://644b9af24bdbc0cc3a95949b.mockapi.io/',
 	}),

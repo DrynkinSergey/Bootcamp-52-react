@@ -14,8 +14,12 @@ import {
 	editPostThunk,
 	fetchAllPostsThunk,
 } from '../redux/operations'
+import { Outlet, useLocation, useNavigate } from 'react-router-dom'
 
 const Posts = () => {
+	const location = useLocation()
+	const navigate = useNavigate()
+	console.log(location)
 	const dispatch = useDispatch()
 	const posts = useSelector(selectFilteredData)
 	const filter = useSelector(selectFilter)
@@ -50,10 +54,11 @@ const Posts = () => {
 
 	useEffect(() => {
 		dispatch(fetchAllPostsThunk())
-	}, [dispatch])
+	}, [dispatch, navigate])
 	return (
 		<div>
 			<button onClick={() => dispatch(fetchAllPostsThunk())}>Load posts</button>
+			<button onClick={() => navigate('about')}>TO ABOUT</button>
 			<AddMessage sendPost={sendPost} />
 			<FilterForm handleFilterChange={handleFilterChange} />
 			<h1>{filter}</h1>
@@ -67,6 +72,8 @@ const Posts = () => {
 					))}
 				</ul>
 			)}
+
+			<Outlet />
 		</div>
 	)
 }

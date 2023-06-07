@@ -1,4 +1,4 @@
-import { useDispatch, useSelector } from 'react-redux'
+import { useDispatch } from 'react-redux'
 import { deletePostThunk } from '../redux/operations'
 
 const SinglePosts = ({ id, title, author, created, edit }) => {

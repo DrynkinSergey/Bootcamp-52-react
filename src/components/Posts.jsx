@@ -1,39 +1,72 @@
-import React, { useEffect, useState } from 'react'
 import AddMessage from './AddPost'
 import SingleMessage from './SinglePosts'
-import axios from 'axios'
 import { FilterForm } from './FilterForm'
+import { useDispatch, useSelector } from 'react-redux'
+import {
+	selectFilter,
+	selectFilteredData,
+	selectLoading,
+} from '../redux/selectors'
+import { addPost, editPost, setFilter } from '../redux/postSlice'
+import { useEffect } from 'react'
+import {
+	addPostThunk,
+	editPostThunk,
+	fetchAllPostsThunk,
+} from '../redux/operations'
 
 const Posts = () => {
-	const [posts, setposts] = useState([])
-	const [newPost, setNewPost] = useState('')
-
+	const dispatch = useDispatch()
+	const posts = useSelector(selectFilteredData)
+	const filter = useSelector(selectFilter)
+	const loading = useSelector(selectLoading)
+	const error = useSelector(state => state.error)
 	const sendPost = text => {
-		setNewPost(text)
-		axios.post('http://localhost:3002/posts', {
-			title: text,
-			author: 'Sergey',
-			created: new Date().toLocaleTimeString(),
-		})
+		dispatch(addPostThunk(text))
 	}
-	const setFiltered = filter => {
-		axios
-			.get(`http://localhost:3002/posts?q=${filter}`)
-			.then(res => setposts(res.data))
+	const edit = data => {
+		const newTitle = prompt('Enter new title') ?? data.title
+		dispatch(editPostThunk({ id: data.id, title: newTitle }))
 	}
-	useEffect(() => {
-		axios.get('http://localhost:3002/posts').then(res => setposts(res.data))
-	}, [newPost])
+	const handleFilterChange = filter => {
+		dispatch(setFilter(filter))
+	}
+	// const sendPost = text => {
+	// 	setNewPost(text)
+	// 	axios.post('http://localhost:3002/posts', {
+	// 		title: text,
+	// 		author: 'Sergey',
+	// 		created: new Date().toLocaleTimeString(),
+	// 	})
+	// }
+	// const handleFilterChange = filter => {
+	// 	axios
+	// 		.get(`http://localhost:3002/posts?q=${filter}`)
+	// 		.then(res => setposts(res.data))
+	// }
+	// useEffect(() => {
+	// 	axios.get('http://localhost:3002/posts').then(res => setposts(res.data))
+	// }, [newPost])
 
+	useEffect(() => {
+		dispatch(fetchAllPostsThunk())
+	}, [dispatch])
 	return (
 		<div>
+			<button onClick={() => dispatch(fetchAllPostsThunk())}>Load posts</button>
 			<AddMessage sendPost={sendPost} />
-			<FilterForm setFiltered={setFiltered} />
-			<ul>
-				{posts.map(m => (
-					<SingleMessage key={m.id} {...m} />
-				))}
-			</ul>
+			<FilterForm handleFilterChange={handleFilterChange} />
+			<h1>{filter}</h1>
+			{loading && <h1>Loading.... </h1>}
+			{error ? (
+				<h1>Something went wrong! Try again...</h1>
+			) : (
+				<ul>
+					{posts.map(m => (
+						<SingleMessage key={m.id} {...m} edit={edit} />
+					))}
+				</ul>
+			)}
 		</div>
 	)
 }

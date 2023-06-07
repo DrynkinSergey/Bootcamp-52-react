@@ -1,10 +1,8 @@
 {
-	"posts": [
-		{
-			"title": "Hello",
-			"author": "Sergey",
-			"created": "01:25:16",
-			"id": 2
-		}
-	]
+  "posts": [
+    {
+      "title": "sdfasdfafsadf",
+      "id": 4
+    }
+  ]
 }

@@ -8,7 +8,6 @@ function App() {
 			<Routes>
 				<Route path='/' element={<Layout />}>
 					<Route index element={<h1>Home</h1>} />
-
 					<Route path='tasks' element={<CuteTodo />} />
 				</Route>
 			</Routes>

@@ -11,7 +11,7 @@ export const store = configureStore({
 		filter: filterReducer,
 		theme: themeReducer,
 		[todosApi.reducerPath]: todosApi.reducer,
-		todos: todoReducer,
+		todoList: todoReducer,
 		auth: authReducer,
 	},
 	middleware: getDafualtMiddleware =>

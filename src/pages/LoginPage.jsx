@@ -1,9 +1,10 @@
-import axios from 'axios'
 import { useDispatch } from 'react-redux'
 import { loginThunk } from '../redux/Auth/operations'
+import { useNavigate } from 'react-router-dom'
 
 export const LoginPage = () => {
 	const dispatch = useDispatch()
+	const navigate = useNavigate()
 	const handleSubmit = e => {
 		e.preventDefault()
 		const form = e.target
@@ -14,7 +15,7 @@ export const LoginPage = () => {
 			password,
 		}
 
-		dispatch(loginThunk(credentials))
+		dispatch(loginThunk(credentials)).then(() => navigate('/tasks'))
 
 		form.reset()
 	}

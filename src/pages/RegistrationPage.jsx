@@ -1,10 +1,22 @@
+import axios from 'axios'
+import { useDispatch } from 'react-redux'
+import { registrationThunk } from '../redux/Auth/operations'
+
 export const RegistrationPage = () => {
+	const dispatch = useDispatch()
 	const handleSubmit = e => {
 		e.preventDefault()
 		const form = e.target
 		const name = form.name.value
 		const email = form.email.value
 		const password = form.password.value
+		dispatch(
+			registrationThunk({
+				name,
+				email,
+				password,
+			})
+		)
 	}
 	return (
 		<div className='flex justify-center items-center h-screen bg-darkMain'>

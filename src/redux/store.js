@@ -1,15 +1,16 @@
 import { configureStore } from '@reduxjs/toolkit'
-import { todoReducer } from './Todo/todoSlice'
 import { filterReducer } from './Todo/filterSlice'
 import { themeReducer } from './themeSlice'
 import { todosApi } from './todosApi'
 import { setupListeners } from '@reduxjs/toolkit/dist/query'
+import { authReducer } from './Auth/authSlice'
 // 'https://goit-task-manager.herokuapp.com/'
 export const store = configureStore({
 	reducer: {
 		filter: filterReducer,
 		theme: themeReducer,
 		[todosApi.reducerPath]: todosApi.reducer,
+		auth: authReducer,
 	},
 	middleware: getDafualtMiddleware =>
 		getDafualtMiddleware().concat(todosApi.middleware),

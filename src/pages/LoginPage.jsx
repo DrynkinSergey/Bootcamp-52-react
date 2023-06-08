@@ -1,9 +1,20 @@
+import axios from 'axios'
+import { useDispatch } from 'react-redux'
+import { loginThunk } from '../redux/Auth/operations'
+
 export const LoginPage = () => {
+	const dispatch = useDispatch()
 	const handleSubmit = e => {
 		e.preventDefault()
 		const form = e.target
 		const email = form.email.value
 		const password = form.password.value
+		const credentials = {
+			email,
+			password,
+		}
+
+		dispatch(loginThunk(credentials))
 
 		form.reset()
 	}

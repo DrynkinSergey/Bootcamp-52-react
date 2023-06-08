@@ -3,7 +3,7 @@ import {
 	useDeleteTodoMutation,
 	useToggleTodoMutation,
 } from '../../redux/todosApi'
-export const SingleTodo = ({ id, title, completed }) => {
+export const SingleTodo = ({ id, text, completed }) => {
 	const [deleteTodo, { isLoading }] = useDeleteTodoMutation()
 	const [toggleTodo] = useToggleTodoMutation()
 	const stylesActive = completed
@@ -32,7 +32,7 @@ export const SingleTodo = ({ id, title, completed }) => {
 						: 'transition-all'
 				}
 			>
-				{title}
+				{text}
 			</span>
 			<button
 				disabled={isLoading}

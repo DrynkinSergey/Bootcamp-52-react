@@ -1,5 +1,5 @@
 import { createSlice, isAnyOf } from '@reduxjs/toolkit'
-import { loginThunk, registrationThunk } from './operations'
+import { loginThunk, logoutThunk, registrationThunk } from './operations'
 
 const fulfilledAuth = (state, { payload }) => {
 	state.user = payload.user
@@ -25,6 +25,13 @@ const authSlice = createSlice({
 	initialState,
 	extraReducers: builder => {
 		builder
+			.addCase(logoutThunk.fulfilled, (state, action) => {
+				state.user = {
+					name: '',
+					email: '',
+				}
+				state.token = null
+			})
 			.addMatcher(
 				isAnyOf(registrationThunk.fulfilled, loginThunk.fulfilled),
 				fulfilledAuth

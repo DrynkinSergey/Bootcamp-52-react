@@ -10,7 +10,7 @@ export const store = configureStore({
 	reducer: {
 		filter: filterReducer,
 		theme: themeReducer,
-		[todosApi.reducerPath]: todosApi.reducer,
+		// [todosApi.reducerPath]: todosApi.reducer,
 		todoList: todoReducer,
 		auth: authReducer,
 	},

@@ -15,9 +15,9 @@ export const fetchTodosThunk = createAsyncThunk(
 
 export const addTodoThunk = createAsyncThunk(
 	'todos/addTodo',
-	async (title, thunkAPI) => {
+	async (text, thunkAPI) => {
 		try {
-			const res = await instance.post('/tasks', { title, completed: false })
+			const res = await instance.post('/tasks', { text })
 			return res.data
 		} catch (error) {
 			return thunkAPI.rejectWithValue(error.message)

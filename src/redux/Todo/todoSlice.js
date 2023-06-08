@@ -1,9 +1,9 @@
 import { createSlice, isAnyOf, nanoid } from '@reduxjs/toolkit'
 import { addTodoThunk, deleteTodoThunk, fetchTodosThunk } from './operations'
+import { logoutThunk } from '../Auth/operations'
 
 const initialState = {
 	todos: [],
-	counter: 1,
 	error: '',
 	loading: false,
 }
@@ -11,13 +11,12 @@ const initialState = {
 const todoSlice = createSlice({
 	name: 'todos',
 	initialState,
-	reducers: {
-		setCounter: (state, action) => {
-			state.counter = state.counter + 2
-		},
-	},
+
 	extraReducers: builder => {
 		builder
+			.addCase(logoutThunk.fulfilled, (state, action) => {
+				state.todos = []
+			})
 			.addCase(fetchTodosThunk.fulfilled, (state, action) => {
 				state.todos = action.payload
 			})

@@ -15,6 +15,9 @@ export const NavBar = () => {
 				<NavLink className='hover:text-[#3258f0]' to='/tasks'>
 					Tasks
 				</NavLink>
+				<NavLink className='hover:text-[#3258f0]' to='/formik'>
+					Formik
+				</NavLink>
 			</div>
 
 			{name ? (

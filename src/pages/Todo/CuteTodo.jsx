@@ -1,10 +1,9 @@
-import React, { useEffect, useMemo } from 'react'
+import { useMemo } from 'react'
 import bg from './../../assets/images/bg-desktop-dark.jpg'
 import bgMobile from './../../assets/images/bg-mobile-dark.jpg'
 import { AddForm } from './AddForm'
 import { TodoList } from './todoList'
 import { useDispatch, useSelector } from 'react-redux'
-import { fetchTodosThunk } from '../../redux/Todo/operations'
 import { selectTheme } from '../../redux/Todo/selectors'
 import { toggleTheme } from '../../redux/themeSlice'
 

@@ -11,6 +11,8 @@ import { refreshThunk } from './redux/Auth/operations'
 import { toast } from 'react-toastify'
 import { PrivateRoute } from './hoc/PrivateRoute'
 import { selectIsRefreshing } from './redux/selectors'
+import { PublicRoute } from './hoc/PublicRoute'
+import { FormikPage } from './pages/Formik/FormikPage'
 function App() {
 	const dispatch = useDispatch()
 	const isRefresh = useSelector(selectIsRefreshing)
@@ -28,6 +30,8 @@ function App() {
 			<Routes>
 				<Route path='/' element={<Layout />}>
 					<Route index element={<Home />} />
+					<Route path='/formik' element={<FormikPage />} />
+
 					<Route
 						path='tasks'
 						element={
@@ -36,8 +40,22 @@ function App() {
 							</PrivateRoute>
 						}
 					/>
-					<Route path='login' element={<LoginPage />} />
-					<Route path='registration' element={<RegistrationPage />} />
+					<Route
+						path='login'
+						element={
+							<PublicRoute>
+								<LoginPage />
+							</PublicRoute>
+						}
+					/>
+					<Route
+						path='registration'
+						element={
+							<PublicRoute>
+								<RegistrationPage />
+							</PublicRoute>
+						}
+					/>
 				</Route>
 			</Routes>
 		</>

@@ -10,6 +10,7 @@ const fulfilledAuth = (state, { payload }) => {
 	state.user = payload.user
 	state.token = payload.token
 	state.loading = false
+	state.isLoggedIn = true
 }
 const rejectedAuth = (state, { payload }) => {
 	state.error = payload
@@ -20,6 +21,7 @@ const initialState = {
 		name: '',
 		email: '',
 	},
+	isLoggedIn: false,
 	token: null,
 	error: '',
 	loading: false,
@@ -35,10 +37,12 @@ const authSlice = createSlice({
 					name: '',
 					email: '',
 				}
+				state.isLoggedIn = false
 				state.token = null
 			})
 			.addCase(refreshThunk.fulfilled, (state, action) => {
 				state.user = action.payload
+				state.isLoggedIn = true
 			})
 			.addMatcher(
 				isAnyOf(registrationThunk.fulfilled, loginThunk.fulfilled),

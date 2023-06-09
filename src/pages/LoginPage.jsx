@@ -1,10 +1,14 @@
 import { useDispatch } from 'react-redux'
 import { loginThunk } from '../redux/Auth/operations'
-import { useNavigate } from 'react-router-dom'
+import { useLocation, useNavigate } from 'react-router-dom'
+import { toast } from 'react-toastify'
+import { fetchTodosThunk } from '../redux/Todo/operations'
 
 export const LoginPage = () => {
 	const dispatch = useDispatch()
 	const navigate = useNavigate()
+	const location = useLocation()
+	console.log(location)
 	const handleSubmit = e => {
 		e.preventDefault()
 		const form = e.target
@@ -15,7 +19,14 @@ export const LoginPage = () => {
 			password,
 		}
 
-		dispatch(loginThunk(credentials)).then(() => navigate('/tasks'))
+		dispatch(loginThunk(credentials))
+			.unwrap()
+			.then(() => {
+				navigate(location.state?.from ?? '/tasks')
+				toast.success('Wellcome back')
+			})
+			.catch(() => toast.error('Try again'))
+		// dispatch(fetchTodosThunk())
 
 		form.reset()
 	}

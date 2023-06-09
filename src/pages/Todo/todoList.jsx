@@ -6,10 +6,11 @@ import { useEffect } from 'react'
 import { fetchTodosThunk } from '../../redux/Todo/operations'
 
 export const TodoList = () => {
-	const dispatch = useDispatch()
-	useEffect(() => {
-		dispatch(fetchTodosThunk())
-	}, [dispatch])
+	// const dispatch = useDispatch()
+	// const online = useSelector(state => state.auth.user.name)
+	// useEffect(() => {
+	// 	online && dispatch(fetchTodosThunk())
+	// }, [dispatch, online])
 	const data = useSelector(selectTodos)
 	const ViewData = () =>
 		data.map(todo => <SingleTodo key={todo.id} {...todo} />).reverse()

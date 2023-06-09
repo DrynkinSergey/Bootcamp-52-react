@@ -9,6 +9,7 @@ import { useEffect } from 'react'
 import { useDispatch } from 'react-redux'
 import { refreshThunk } from './redux/Auth/operations'
 import { toast } from 'react-toastify'
+import { PrivateRoute } from './hoc/PrivateRoute'
 function App() {
 	const dispatch = useDispatch()
 	useEffect(() => {
@@ -21,7 +22,14 @@ function App() {
 			<Routes>
 				<Route path='/' element={<Layout />}>
 					<Route index element={<Home />} />
-					<Route path='tasks' element={<CuteTodo />} />
+					<Route
+						path='tasks'
+						element={
+							<PrivateRoute>
+								<CuteTodo />
+							</PrivateRoute>
+						}
+					/>
 					<Route path='login' element={<LoginPage />} />
 					<Route path='registration' element={<RegistrationPage />} />
 				</Route>

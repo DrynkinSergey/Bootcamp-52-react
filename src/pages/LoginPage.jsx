@@ -22,7 +22,7 @@ export const LoginPage = () => {
 		dispatch(loginThunk(credentials))
 			.unwrap()
 			.then(() => {
-				navigate(location.state?.from ?? '/tasks')
+				navigate(location.state?.from ?? '/')
 				toast.success('Wellcome back')
 			})
 			.catch(() => toast.error('Try again'))

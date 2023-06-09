@@ -50,6 +50,7 @@ export const refreshThunk = createAsyncThunk(
 		try {
 			setToken(persistedToken)
 			const res = await instance.get('/users/me')
+
 			return res.data
 		} catch (error) {
 			return thunkApi.rejectWithValue(error.message)

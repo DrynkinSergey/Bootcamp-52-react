@@ -1,5 +1,11 @@
 import { createSlice, isAnyOf, nanoid } from '@reduxjs/toolkit'
-import { addTodoThunk, deleteTodoThunk, fetchTodosThunk } from './operations'
+import {
+	addTodoThunk,
+	deleteTodoThunk,
+	editTodoThunk,
+	fetchTodosThunk,
+	toggleTodoThunk,
+} from './operations'
 import { logoutThunk } from '../Auth/operations'
 
 const initialState = {
@@ -23,10 +29,19 @@ const todoSlice = createSlice({
 			.addCase(addTodoThunk.fulfilled, (state, action) => {
 				state.todos.push(action.payload)
 			})
+
 			.addCase(deleteTodoThunk.fulfilled, (state, action) => {
 				const index = state.todos.findIndex(item => item.id === action.payload)
 				state.todos.splice(index, 1)
 			})
+
+			.addMatcher(
+				isAnyOf(toggleTodoThunk.fulfilled, editTodoThunk.fulfilled),
+				(state, { payload }) => {
+					const index = state.todos.findIndex(todo => todo.id === payload.id)
+					state.todos.splice(index, 1, payload)
+				}
+			)
 
 			.addMatcher(
 				action => action.type.endsWith('/fulfilled'),

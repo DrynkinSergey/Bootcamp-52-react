@@ -14,7 +14,6 @@ export const TodoList = () => {
 	const ViewData = () =>
 		data.map(todo => <SingleTodo key={todo.id} {...todo} />).reverse()
 
-	// const { data = [], isLoading, isError } = useGetTodosQuery()
 	return (
 		<div className='font-josefin bg-darkMain shadow-mainDark'>
 			<ul className='rounded-md overflow-hidden'>

@@ -43,3 +43,30 @@ export const deleteTodoThunk = createAsyncThunk(
 		},
 	}
 )
+
+export const toggleTodoThunk = createAsyncThunk(
+	'todos/toggleTodo',
+	async (body, thunkAPI) => {
+		try {
+			const { data } = await instance.patch(`/tasks/${body.id}`, {
+				completed: body.completed,
+			})
+			return data
+		} catch (error) {
+			return thunkAPI.rejectWithValue(error.message)
+		}
+	}
+)
+export const editTodoThunk = createAsyncThunk(
+	'todos/editThunk',
+	async (body, thunkAPI) => {
+		try {
+			const { data } = await instance.patch(`/tasks/${body.id}`, {
+				text: body.text,
+			})
+			return data
+		} catch (error) {
+			return thunkAPI.rejectWithValue(error.message)
+		}
+	}
+)

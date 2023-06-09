@@ -5,7 +5,17 @@ import { RegistrationPage } from './pages/RegistrationPage'
 import './index.css'
 import { Layout } from './components/Layout'
 import Home from './pages/Home'
+import { useEffect } from 'react'
+import { useDispatch } from 'react-redux'
+import { refreshThunk } from './redux/Auth/operations'
+import { toast } from 'react-toastify'
 function App() {
+	const dispatch = useDispatch()
+	useEffect(() => {
+		dispatch(refreshThunk())
+			.unwrap()
+			.catch(() => toast.error('Token is not exist'))
+	}, [dispatch])
 	return (
 		<>
 			<Routes>
